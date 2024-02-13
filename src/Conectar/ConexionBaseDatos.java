@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class ConexionBaseDatos {
     String driver = "com.mysql.cj.jdbc.Driver";
     String user = "root";
-    String password = "mateocumbal123M*";//poner contraseña
+    String password = "";//poner contraseña
     String database = "biblioteca";//poner el nombre de su base datos
     String ip = "localhost";
     String puerto = "3306";

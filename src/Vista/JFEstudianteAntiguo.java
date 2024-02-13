@@ -1,7 +1,7 @@
 package Vista;
 
 import Conectar.ConexionBaseDatos;
-import Negocio.ConsultaMySQL;
+//import Negocio.ConsultaMySQL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class JFEstudianteAntiguo extends javax.swing.JFrame {
 
     ConexionBaseDatos con1 = new ConexionBaseDatos();
-    ConsultaMySQL consulta;
+//    ConsultaMySQL consulta;
     Connection conet;
     PreparedStatement ps;
     Statement st;
@@ -34,7 +34,7 @@ public class JFEstudianteAntiguo extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(JFEstudianteAntiguo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        consulta = new ConsultaMySQL(conet);
+//        consulta = new ConsultaMySQL(conet);
         tabla = (DefaultTableModel) this.jTlistaEstudiantes.getModel();
         this.actualizarTabla();
     }

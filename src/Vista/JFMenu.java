@@ -9,7 +9,7 @@ public class JFMenu extends javax.swing.JFrame {
 
 //    JFEstudianteAntiguo jfEstudiante;
     JFEstudiante jfEstudiante;
-    JFAutor jfAutor;
+    JFAutorAntiguo jfAutor;
     
     public JFMenu() {
         initComponents();
@@ -81,7 +81,7 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMnuEstudianteActionPerformed
 
     private void jMnuAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuAutorActionPerformed
-        jfAutor = new JFAutor();
+        jfAutor = new JFAutorAntiguo();
         jfAutor.setVisible(true);
         this.setVisible(false);  
     }//GEN-LAST:event_jMnuAutorActionPerformed
