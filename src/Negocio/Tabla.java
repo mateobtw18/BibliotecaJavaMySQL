@@ -37,7 +37,8 @@ public class Tabla {
             // Cerrar recursos
             ps.close();
             rs.close();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
         }
     }
@@ -63,7 +64,60 @@ public class Tabla {
             // Cerrar recursos
             ps.close();
             rs.close();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
+            e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
+        }
+    }
+        
+    public void actualizarTablaAutor(Connection cn, DefaultTableModel tabla) {
+        String consulta = "SELECT * FROM autor";
+        try {
+            PreparedStatement ps = cn.prepareStatement(consulta);
+            ResultSet rs = ps.executeQuery();
+
+            tabla.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+
+            while(rs.next()) {
+                Object[] autor = new Object[3];
+                autor[0] = rs.getInt("idAutor");
+                autor[1] = rs.getString("NombreAutor");
+                autor[2] = rs.getString("FechaNacimiento");
+
+                tabla.addRow(autor);
+            }
+            // Cerrar recursos
+            ps.close();
+            rs.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
+        }
+    }
+        
+        public void consultarAutor(Connection cn, String atributoABuscar, String texto, DefaultTableModel tabla){
+        String consultaSQL = "SELECT * FROM autor WHERE " + atributoABuscar + " LIKE ?";
+        try {
+            PreparedStatement ps = cn.prepareStatement(consultaSQL);
+        // Configurar el parámetro para evitar inyección SQL y manejar las comillas
+            ps.setString(1, texto + "%");
+            ResultSet rs = ps.executeQuery();
+
+            tabla.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+
+            while(rs.next()) {
+                Object[] autor = new Object[3];
+                autor[0] = rs.getInt("idAutor");
+                autor[1] = rs.getString("NombreAutor");
+                autor[2] = rs.getString("FechaNacimiento");
+
+                tabla.addRow(autor);
+            }
+            // Cerrar recursos
+            ps.close();
+            rs.close();
+        }
+        catch (SQLException e) {
             e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
         }
     }
