@@ -10,6 +10,7 @@ import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import java.sql.SQLException;
+//import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Acer123
  */
-public class JFAutorReal extends javax.swing.JFrame {
+public class JFEstudianteFecha extends javax.swing.JFrame {
 
     ConexionBaseDatos con = new ConexionBaseDatos();
     Connection cn;
@@ -35,32 +36,32 @@ public class JFAutorReal extends javax.swing.JFrame {
     SimpleDateFormat formato;
     Date fecha;
     
-    public JFAutorReal() {
+    public JFEstudianteFecha() {
         initComponents();
         this.setLocationRelativeTo(null);
         try {
             cn = con.conexion();
         } catch (SQLException ex) {
-            Logger.getLogger(JFAutorReal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFEstudianteFecha.class.getName()).log(Level.SEVERE, null, ex);
         }
         consulta = new ConsultaBaseDatos();
-        tabla = (DefaultTableModel) this.jTlistaAutores.getModel();
+        tabla = (DefaultTableModel) this.jTlistaEstudiantes.getModel();
         metodoTabla = new Tabla();
-        this.metodoTabla.actualizarTablaAutor(cn, tabla);
-        BGfiltrar.add(jRBidAutor);
-        BGfiltrar.add(jRBnombreAutor);
-        this.JTFidAutorModificar.setEditable(false);
+        this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+        BGfiltrar.add(jRBidEstudiante);
+        BGfiltrar.add(jRBnombreEstudiante);
+        this.JTFidEstudianteModificar.setEditable(false);
         this.limpiarCeldasRegistrar();
-        this.jDCfechaNacimientoAutor.setEnabled(true); //QUE HACE
+        this.jDCfechaNacimientoEstudiante.setEnabled(true);
         formato = new SimpleDateFormat("yyyy-MM-dddd");
+//        fecha = new Date();
     }
 
     @Override
     public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/AutorIcon.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/EstudianteIcon2.png"));
         return retValue;
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,48 +72,44 @@ public class JFAutorReal extends javax.swing.JFrame {
     private void initComponents() {
 
         BGfiltrar = new javax.swing.ButtonGroup();
-        jButton1 = new javax.swing.JButton();
-        jTPautor = new javax.swing.JTabbedPane();
+        jTPestudiante = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTFnombreAutor = new javax.swing.JTextField();
-        jTFidAutor = new javax.swing.JTextField();
-        jDCfechaNacimientoAutor = new com.toedter.calendar.JDateChooser();
+        jTFnombreEstudiante = new javax.swing.JTextField();
+        jTFidEstudiante = new javax.swing.JTextField();
+        jDCfechaNacimientoEstudiante = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jBregistrar = new javax.swing.JButton();
         jBnuevoRegistrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jRBidAutor = new javax.swing.JRadioButton();
-        jRBnombreAutor = new javax.swing.JRadioButton();
-        jTFfiltrarAutor = new javax.swing.JTextField();
+        jRBidEstudiante = new javax.swing.JRadioButton();
+        jRBnombreEstudiante = new javax.swing.JRadioButton();
+        jTFfiltrarEstudiante = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        JTFidAutorModificar = new javax.swing.JTextField();
-        jTFnombreAutorModificar = new javax.swing.JTextField();
-        jDCfechaNacimientoAutorModificar = new com.toedter.calendar.JDateChooser();
-        jPanel3 = new javax.swing.JPanel();
+        JTFidEstudianteModificar = new javax.swing.JTextField();
+        jTFnombreEstudianteModificar = new javax.swing.JTextField();
+        jDCfechaNacimientoEstudianteModificar = new com.toedter.calendar.JDateChooser();
         jBactualizarDatos = new javax.swing.JButton();
-        jBeliminar = new javax.swing.JButton();
         jBnuevoActualizar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTlistaAutores = new javax.swing.JTable();
+        jTlistaEstudiantes = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMnuvolverAlMenu = new javax.swing.JMenuItem();
         jMnusalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        jButton1.setText("jButton1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Autores");
+        setTitle("Estudiantes");
         setIconImage(getIconImage());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -125,7 +122,7 @@ public class JFAutorReal extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha de Nacimiento:");
 
-        jDCfechaNacimientoAutor.setDateFormatString("yyyy-MM-dd");
+        jDCfechaNacimientoEstudiante.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -139,10 +136,10 @@ public class JFAutorReal extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTFnombreAutor, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFidAutor, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDCfechaNacimientoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTFnombreEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTFidEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDCfechaNacimientoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,28 +147,28 @@ public class JFAutorReal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTFidAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFidEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTFnombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFnombreEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jDCfechaNacimientoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDCfechaNacimientoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jBregistrar.setText("Registrar Autor");
+        jBregistrar.setText("Registrar");
         jBregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBregistrarActionPerformed(evt);
             }
         });
 
-        jBnuevoRegistrar.setText("Agregar un Nuevo Autor");
+        jBnuevoRegistrar.setText("Nuevo");
         jBnuevoRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBnuevoRegistrarActionPerformed(evt);
@@ -185,18 +182,18 @@ public class JFAutorReal extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jBregistrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jBnuevoRegistrar)
                 .addGap(48, 48, 48))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBregistrar)
                     .addComponent(jBnuevoRegistrar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -205,10 +202,10 @@ public class JFAutorReal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,22 +214,22 @@ public class JFAutorReal extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jTPautor.addTab("Registrar Autor", jPanel1);
+        jTPestudiante.addTab("Registrar Estudiante", jPanel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrar"));
 
-        jRBidAutor.setText("ID Autor");
+        jRBidEstudiante.setText("ID Estudiante");
 
-        jRBnombreAutor.setText("Nombre");
+        jRBnombreEstudiante.setText("Nombre");
 
-        jTFfiltrarAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFfiltrarEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFfiltrarAutorKeyReleased(evt);
+                jTFfiltrarEstudianteKeyReleased(evt);
             }
         });
 
@@ -242,21 +239,21 @@ public class JFAutorReal extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jRBidAutor)
+                .addComponent(jRBidEstudiante)
                 .addGap(23, 23, 23)
-                .addComponent(jRBnombreAutor)
+                .addComponent(jRBnombreEstudiante)
                 .addGap(18, 18, 18)
-                .addComponent(jTFfiltrarAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTFfiltrarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRBidAutor)
-                    .addComponent(jRBnombreAutor)
-                    .addComponent(jTFfiltrarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRBidEstudiante)
+                    .addComponent(jRBnombreEstudiante)
+                    .addComponent(jTFfiltrarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -268,7 +265,7 @@ public class JFAutorReal extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha de Nacimiento:");
 
-        jDCfechaNacimientoAutorModificar.setDateFormatString("yyyy-MM-dd");
+        jDCfechaNacimientoEstudianteModificar.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -282,9 +279,9 @@ public class JFAutorReal extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTFnombreAutorModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(JTFidAutorModificar, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDCfechaNacimientoAutorModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTFnombreEstudianteModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(JTFidEstudianteModificar, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDCfechaNacimientoEstudianteModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -293,31 +290,22 @@ public class JFAutorReal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(JTFidAutorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFidEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTFnombreAutorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFnombreEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(jDCfechaNacimientoAutorModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDCfechaNacimientoEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         jBactualizarDatos.setText("Actualizar Datos");
         jBactualizarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBactualizarDatosActionPerformed(evt);
-            }
-        });
-
-        jBeliminar.setText("Eliminar Autor");
-        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeliminarActionPerformed(evt);
             }
         });
 
@@ -328,66 +316,58 @@ public class JFAutorReal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBactualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBeliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBnuevoActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jBactualizarDatos)
-                .addGap(18, 18, 18)
-                .addComponent(jBeliminar)
-                .addGap(18, 18, 18)
-                .addComponent(jBnuevoActualizar)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
+        jBeliminar.setText("Eliminar Estudiante");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jBactualizarDatos)
+                        .addGap(54, 54, 54)
+                        .addComponent(jBnuevoActualizar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addComponent(jBeliminar)
+                .addGap(65, 65, 65))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBactualizarDatos)
+                    .addComponent(jBnuevoActualizar)
+                    .addComponent(jBeliminar))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        jTPautor.addTab("Modificar Datos", jPanel2);
+        jTPestudiante.addTab("Modificar Datos", jPanel2);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Autores"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Estudiantes"));
 
-        jTlistaAutores.setModel(new javax.swing.table.DefaultTableModel(
+        jTlistaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "idAutor", "NombreAutor", "FechaNacimiento"
+                "idEstudiante", "NombreEstudiante", "FechaNacimiento"
             }
         ) {
             Class[] types = new Class [] {
@@ -405,12 +385,12 @@ public class JFAutorReal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTlistaAutores.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTlistaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTlistaAutoresMouseClicked(evt);
+                jTlistaEstudiantesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTlistaAutores);
+        jScrollPane1.setViewportView(jTlistaEstudiantes);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -425,8 +405,8 @@ public class JFAutorReal extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
 
         jMenu1.setText("File");
@@ -463,18 +443,18 @@ public class JFAutorReal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTPautor)
+                    .addComponent(jTPestudiante)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTPautor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTPestudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -483,114 +463,140 @@ public class JFAutorReal extends javax.swing.JFrame {
 
     
     private void jBregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistrarActionPerformed
-        String idAutor = this.jTFidAutor.getText();
-        String nombreAutor = this.jTFnombreAutor.getText();
-        String fechaNacimientoAutor = this.formato.format(this.jDCfechaNacimientoAutor.getDate());
+//        String idEstudiante = this.jTFidEstudiante.getText();
+//        String nombreEstudiante = this.jTFnombreEstudiante.getText();
+//        String fechaNacimientoEstudiante = this.jTFfechaNacimientoEstudiante.getText();
+//        
+//        if(this.consulta.registrarEstudiante(cn, idEstudiante, nombreEstudiante, fechaNacimientoEstudiante) == true){
+//            this.limpiarCeldasRegistrar();
+//            this.jTFidEstudiante.requestFocus();
+//        }
+//        else{
+//            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+//            this.jTlistaEstudiantes.setModel(tabla);
+//            this.jTFidEstudiante.setEditable(false);
+//            this.jTFnombreEstudiante.setEditable(false);
+//            this.jTFfechaNacimientoEstudiante.setEditable(false);
+//        }
+        String idEstudiante = this.jTFidEstudiante.getText();
+        String nombreEstudiante = this.jTFnombreEstudiante.getText();
         
-        if(this.consulta.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor) == true){
+        
+        String fechaNacimientoEstudiante = this.formato.format(this.jDCfechaNacimientoEstudiante.getDate());
+        
+        if(this.consulta.registrarEstudiante(cn, idEstudiante, nombreEstudiante, fechaNacimientoEstudiante) == true){
             this.limpiarCeldasRegistrar();
-            this.jTFidAutor.requestFocus();
+            this.jTFidEstudiante.requestFocus();
         }
         else{
-            this.metodoTabla.actualizarTablaAutor(cn, tabla);
-            this.jTlistaAutores.setModel(tabla);
-            this.jTFidAutor.setEditable(false);
-            this.jTFnombreAutor.setEditable(false);
-            this.jDCfechaNacimientoAutor.setEnabled(false);
+            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+            this.jTlistaEstudiantes.setModel(tabla);
+            this.jTFidEstudiante.setEditable(false);
+            this.jTFnombreEstudiante.setEditable(false);
+            this.jDCfechaNacimientoEstudiante.setEnabled(false);
         }
     }//GEN-LAST:event_jBregistrarActionPerformed
 
     private void jBnuevoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoRegistrarActionPerformed
-//        this.jTFidAutor.setEditable(true);
-//        this.jTFnombreAutor.setEditable(true);
-//        this.jDCfechaNacimientoAutor.setEnabled(true);
-//        this.jTFidAutor.setText("");
-//        this.jTFnombreAutor.setText("");
-//        this.jDCfechaNacimientoAutor.setDate(null);
-        this.limpiarCeldasRegistrar();
-        this.jTFidAutor.requestFocus();
+        this.jTFidEstudiante.setEditable(true);
+        this.jTFnombreEstudiante.setEditable(true);
+        this.jDCfechaNacimientoEstudiante.setEnabled(true);
+        this.jTFidEstudiante.setText("");
+        this.jTFnombreEstudiante.setText("");
+        this.jDCfechaNacimientoEstudiante.setDate(null); //dateChooser.setDate(null);
+        this.jTFidEstudiante.requestFocus();
     }//GEN-LAST:event_jBnuevoRegistrarActionPerformed
 
     private void limpiarCeldasRegistrar(){
-        this.jTFidAutor.setEditable(true);
-        this.jTFnombreAutor.setEditable(true);
-        this.jDCfechaNacimientoAutor.setEnabled(true);
-        this.jTFidAutor.setText("");
-        this.jTFnombreAutor.setText("");
-        this.jDCfechaNacimientoAutor.setDate(null);
+        this.jTFidEstudiante.setEditable(true);
+        this.jTFnombreEstudiante.setEditable(true);
+        this.jDCfechaNacimientoEstudiante.setEnabled(false);
+        this.jTFidEstudiante.setText("");
+        this.jTFnombreEstudiante.setText("");
+        this.jDCfechaNacimientoEstudiante.cleanup();
     }
     
-    private void jTFfiltrarAutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarAutorKeyReleased
-        if(this.jRBidAutor.isSelected()){
-            this.metodoTabla.consultarAutor(cn, "idAutor", this.jTFfiltrarAutor.getText(), tabla);
+    private void jTFfiltrarEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarEstudianteKeyReleased
+        if(this.jRBidEstudiante.isSelected()){
+            this.metodoTabla.consultarEstudiante(cn, "idEstudiante", this.jTFfiltrarEstudiante.getText(), tabla);
         }
-        else if(this.jRBnombreAutor.isSelected()){
-            this.metodoTabla.consultarAutor(cn, "NombreAutor", this.jTFfiltrarAutor.getText(), tabla);
+        else if(this.jRBnombreEstudiante.isSelected()){
+            this.metodoTabla.consultarEstudiante(cn, "NombreEstudiante", this.jTFfiltrarEstudiante.getText(), tabla);
         }
         else{
             JOptionPane.showMessageDialog(null, "Elija un atributo para filtrar.", "Error", JOptionPane.ERROR_MESSAGE);
-            this.jTFfiltrarAutor.setText("");
+            this.jTFfiltrarEstudiante.setText("");
         }
-    }//GEN-LAST:event_jTFfiltrarAutorKeyReleased
+    }//GEN-LAST:event_jTFfiltrarEstudianteKeyReleased
 
-    private void jTlistaAutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistaAutoresMouseClicked
-        if(this.jTPautor.getSelectedIndex() == 1){
-            int fila = this.jTlistaAutores.getSelectedRow();
+    private void jTlistaEstudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistaEstudiantesMouseClicked
+        if(this.jTPestudiante.getSelectedIndex() == 1){
+            int fila = this.jTlistaEstudiantes.getSelectedRow();
             String id = tabla.getValueAt(fila, 0).toString();
             String nombre = tabla.getValueAt(fila, 1).toString();
             String fechaNacimiento = tabla.getValueAt(fila, 2).toString();
             
-            this.JTFidAutorModificar.setText(id);
-            this.jTFnombreAutorModificar.setText(nombre);
-//            this.jTFfechaNacimientoAutorModificar.setText(fecha);
+            this.JTFidEstudianteModificar.setText(id);
+            this.jTFnombreEstudianteModificar.setText(nombre);
+            
             try {
+                //            this.jTFfechaNacimientoEstudianteModificar.setText(fecha);
                 fecha = formato.parse(fechaNacimiento);
             } catch (ParseException ex) {
-                Logger.getLogger(JFAutorReal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JFEstudianteFecha.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.jDCfechaNacimientoAutorModificar.setDate(fecha);
+            this.jDCfechaNacimientoEstudianteModificar.setDate(fecha);
         }
-    }//GEN-LAST:event_jTlistaAutoresMouseClicked
+    }//GEN-LAST:event_jTlistaEstudiantesMouseClicked
 
     private void jBactualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBactualizarDatosActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de actualizar los datos...?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(opcion == JOptionPane.YES_OPTION){
-            String idAutor = this.JTFidAutorModificar.getText();
-            String nombreActualizado = this.jTFnombreAutorModificar.getText();
-            String fechaActualizada = this.formato.format(this.jDCfechaNacimientoAutorModificar.getDate());
+            String idEstudiante = this.JTFidEstudianteModificar.getText();
+            String nombreActualizado = this.jTFnombreEstudianteModificar.getText();
+//            String fechaActualizada = this.jTFfechaNacimientoEstudianteModificar.getText();
+            String fechaActualizada = this.formato.format(this.jDCfechaNacimientoEstudiante.getDate());
 
-            this.consulta.actualizarAutor(cn, idAutor, nombreActualizado, fechaActualizada);
-            this.metodoTabla.actualizarTablaAutor(cn, tabla);
-            this.jTlistaAutores.setModel(tabla);
 
-            this.jTFfiltrarAutor.setText("");     
+            this.consulta.actualizarEstudiante(cn, idEstudiante, nombreActualizado, fechaActualizada);
+            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+            this.jTlistaEstudiantes.setModel(tabla);
+
+            this.jTFfiltrarEstudiante.setText("");     
+//            this.jTFidEstudiante.setText("");
+//            this.jTFnombreEstudiante.setText("");
+//            this.jTFfechaNacimientoEstudiante.setText("");
             this.limpiarCeldasRegistrar();
         }
     }//GEN-LAST:event_jBactualizarDatosActionPerformed
 
     private void jBnuevoActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActualizarActionPerformed
         this.BGfiltrar.clearSelection();
-        this.JTFidAutorModificar.setText("");
-        this.jTFnombreAutorModificar.setText("");
-        this.jDCfechaNacimientoAutorModificar.setDate(null);
-        this.jTFfiltrarAutor.setText("");
+        this.JTFidEstudianteModificar.setText("");
+        this.jTFnombreEstudianteModificar.setText("");
+//        this.jTFfechaNacimientoEstudianteModificar.setText("");
+this.jDCfechaNacimientoEstudianteModificar.setDate(null);
+        this.jTFfiltrarEstudiante.setText("");
     }//GEN-LAST:event_jBnuevoActualizarActionPerformed
  
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
-        String id = this.JTFidAutorModificar.getText();
+        String id = this.JTFidEstudianteModificar.getText();
         
-        int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar al autor...?", "Eliminar autor", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar al estudiante...?", "Eliminar Estudiante", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(opcion == JOptionPane.YES_OPTION){
-            this.consulta.eliminarAutor(cn, id);
-            this.metodoTabla.actualizarTablaAutor(cn, tabla);
-            this.jTlistaAutores.setModel(tabla);
+            this.consulta.eliminarEstudiante(cn, id);
+            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+            this.jTlistaEstudiantes.setModel(tabla);
             
-            this.JTFidAutorModificar.setText("");
-            this.jTFnombreAutorModificar.setText("");
-            this.jDCfechaNacimientoAutorModificar.setDate(null);
+            this.JTFidEstudianteModificar.setText("");
+            this.jTFnombreEstudianteModificar.setText("");
+            this.jDCfechaNacimientoEstudianteModificar.cleanup();
             
-            this.jTFfiltrarAutor.setText("");
-            this.limpiarCeldasRegistrar();           
+            this.jTFfiltrarEstudiante.setText("");
+            this.limpiarCeldasRegistrar();
+//            this.jTFidEstudiante.setText("");
+//            this.jTFnombreEstudiante.setText("");
+//            this.jTFfechaNacimientoEstudiante.setText("");
         }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
@@ -621,18 +627,14 @@ public class JFAutorReal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFAutorReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFEstudianteFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFAutorReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFEstudianteFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFAutorReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFEstudianteFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFAutorReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFEstudianteFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -641,22 +643,21 @@ public class JFAutorReal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFAutorReal().setVisible(true);
+                new JFEstudianteFecha().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BGfiltrar;
-    private javax.swing.JTextField JTFidAutorModificar;
+    private javax.swing.JTextField JTFidEstudianteModificar;
     private javax.swing.JButton jBactualizarDatos;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBnuevoActualizar;
     private javax.swing.JButton jBnuevoRegistrar;
     private javax.swing.JButton jBregistrar;
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDCfechaNacimientoAutor;
-    private com.toedter.calendar.JDateChooser jDCfechaNacimientoAutorModificar;
+    private com.toedter.calendar.JDateChooser jDCfechaNacimientoEstudiante;
+    private com.toedter.calendar.JDateChooser jDCfechaNacimientoEstudianteModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -670,20 +671,19 @@ public class JFAutorReal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnuvolverAlMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRBidAutor;
-    private javax.swing.JRadioButton jRBnombreAutor;
+    private javax.swing.JRadioButton jRBidEstudiante;
+    private javax.swing.JRadioButton jRBnombreEstudiante;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFfiltrarAutor;
-    private javax.swing.JTextField jTFidAutor;
-    private javax.swing.JTextField jTFnombreAutor;
-    private javax.swing.JTextField jTFnombreAutorModificar;
-    private javax.swing.JTabbedPane jTPautor;
-    private javax.swing.JTable jTlistaAutores;
+    private javax.swing.JTextField jTFfiltrarEstudiante;
+    private javax.swing.JTextField jTFidEstudiante;
+    private javax.swing.JTextField jTFnombreEstudiante;
+    private javax.swing.JTextField jTFnombreEstudianteModificar;
+    private javax.swing.JTabbedPane jTPestudiante;
+    private javax.swing.JTable jTlistaEstudiantes;
     // End of variables declaration//GEN-END:variables
 }

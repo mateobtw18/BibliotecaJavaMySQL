@@ -10,7 +10,9 @@ import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 //import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -20,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Acer123
+ * @author G3
  */
 public class JFEstudianteReal extends javax.swing.JFrame {
 
@@ -30,6 +32,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     Tabla metodoTabla;
     DefaultTableModel tabla;
     JFMenu jfMenu;
+    SimpleDateFormat formato;
+    Date fecha;
     
     public JFEstudianteReal() {
         initComponents();
@@ -46,6 +50,9 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         BGfiltrar.add(jRBidEstudiante);
         BGfiltrar.add(jRBnombreEstudiante);
         this.JTFidEstudianteModificar.setEditable(false);
+        this.limpiarCeldasRegistrar();
+        this.jDCfechaNacimientoEstudiante.setEnabled(true);
+        formato = new SimpleDateFormat("yyyy-MM-dddd");
     }
 
     @Override
@@ -69,14 +76,12 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTFfechaNacimientoEstudiante = new javax.swing.JTextField();
         jTFnombreEstudiante = new javax.swing.JTextField();
         jTFidEstudiante = new javax.swing.JTextField();
+        jDCfechaNacimientoEstudiante = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jBregistrar = new javax.swing.JButton();
         jBnuevoRegistrar = new javax.swing.JButton();
-        jPcalendario = new javax.swing.JPanel();
-        jCalendarAgregar = new com.toedter.calendar.JCalendar();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jRBidEstudiante = new javax.swing.JRadioButton();
@@ -86,14 +91,13 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTFfechaNacimientoEstudianteModificar = new javax.swing.JTextField();
         JTFidEstudianteModificar = new javax.swing.JTextField();
         jTFnombreEstudianteModificar = new javax.swing.JTextField();
+        jDCfechaNacimientoEstudianteModificar = new com.toedter.calendar.JDateChooser();
+        jPanel3 = new javax.swing.JPanel();
         jBactualizarDatos = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        jCalendarModificar = new com.toedter.calendar.JCalendar();
-        jBnuevoActualizar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
+        jBnuevoActualizar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTlistaEstudiantes = new javax.swing.JTable();
@@ -117,6 +121,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha de Nacimiento:");
 
+        jDCfechaNacimientoEstudiante.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -129,9 +135,9 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTFnombreEstudiante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jTFnombreEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTFidEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFfechaNacimientoEstudiante))
+                    .addComponent(jDCfechaNacimientoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -146,22 +152,22 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTFnombreEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jTFfechaNacimientoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jDCfechaNacimientoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jBregistrar.setText("Registrar");
+        jBregistrar.setText("Registrar Estudiante");
         jBregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBregistrarActionPerformed(evt);
             }
         });
 
-        jBnuevoRegistrar.setText("Nuevo");
+        jBnuevoRegistrar.setText("Agregar un Nuevo Estudiante");
         jBnuevoRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBnuevoRegistrarActionPerformed(evt);
@@ -173,45 +179,20 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(39, 39, 39)
                 .addComponent(jBregistrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jBnuevoRegistrar)
-                .addGap(48, 48, 48))
+                .addGap(41, 41, 41))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBregistrar)
                     .addComponent(jBnuevoRegistrar))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        jPcalendario.setBorder(javax.swing.BorderFactory.createTitledBorder("Calendario"));
-
-        jCalendarAgregar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jCalendarAgregarPropertyChange(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPcalendarioLayout = new javax.swing.GroupLayout(jPcalendario);
-        jPcalendario.setLayout(jPcalendarioLayout);
-        jPcalendarioLayout.setHorizontalGroup(
-            jPcalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPcalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCalendarAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPcalendarioLayout.setVerticalGroup(
-            jPcalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPcalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCalendarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -223,21 +204,16 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPcalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPcalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTPestudiante.addTab("Registrar Estudiante", jPanel1);
@@ -288,6 +264,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha de Nacimiento:");
 
+        jDCfechaNacimientoEstudianteModificar.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -302,64 +280,33 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jTFnombreEstudianteModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(JTFidEstudianteModificar, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFfechaNacimientoEstudianteModificar))
+                    .addComponent(jDCfechaNacimientoEstudianteModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(JTFidEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTFnombreEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTFfechaNacimientoEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(JTFidEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTFnombreEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)))
+                    .addComponent(jLabel6)
+                    .addComponent(jDCfechaNacimientoEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         jBactualizarDatos.setText("Actualizar Datos");
         jBactualizarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBactualizarDatosActionPerformed(evt);
-            }
-        });
-
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Calendario"));
-
-        jCalendarModificar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jCalendarModificarPropertyChange(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCalendarModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jCalendarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
-        jBnuevoActualizar.setText("Nuevo");
-        jBnuevoActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevoActualizarActionPerformed(evt);
             }
         });
 
@@ -370,31 +317,49 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             }
         });
 
+        jBnuevoActualizar.setText("Nuevo");
+        jBnuevoActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActualizarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBeliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBactualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBnuevoActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBactualizarDatos)
+                .addGap(18, 18, 18)
+                .addComponent(jBeliminar)
+                .addGap(18, 18, 18)
+                .addComponent(jBnuevoActualizar)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jBactualizarDatos)
-                        .addGap(54, 54, 54)
-                        .addComponent(jBnuevoActualizar)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(jBeliminar)
-                        .addGap(65, 65, 65))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,13 +370,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBactualizarDatos)
-                    .addComponent(jBnuevoActualizar)
-                    .addComponent(jBeliminar))
-                .addGap(0, 24, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         jTPestudiante.addTab("Modificar Datos", jPanel2);
@@ -461,8 +421,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
         );
 
         jMenu1.setText("File");
@@ -501,16 +461,16 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTPestudiante)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTPestudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTPestudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -532,7 +492,7 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 
         String idEstudiante = this.jTFidEstudiante.getText();
         String nombreEstudiante = this.jTFnombreEstudiante.getText();
-        String fechaNacimientoEstudiante = this.jTFfechaNacimientoEstudiante.getText();
+        String fechaNacimientoEstudiante = this.formato.format(this.jDCfechaNacimientoEstudiante.getDate());
         
         if(this.consulta.registrarEstudiante(cn, idEstudiante, nombreEstudiante, fechaNacimientoEstudiante) == true){
             this.limpiarCeldasRegistrar();
@@ -543,37 +503,30 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             this.jTlistaEstudiantes.setModel(tabla);
             this.jTFidEstudiante.setEditable(false);
             this.jTFnombreEstudiante.setEditable(false);
-            this.jTFfechaNacimientoEstudiante.setEditable(false);
+            this.jDCfechaNacimientoEstudiante.setEnabled(false);
         }
     }//GEN-LAST:event_jBregistrarActionPerformed
 
     private void jBnuevoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoRegistrarActionPerformed
-        this.jTFidEstudiante.setEditable(true);
-        this.jTFnombreEstudiante.setEditable(true);
-        this.jTFfechaNacimientoEstudiante.setEditable(true);
-        this.jTFidEstudiante.setText("");
-        this.jTFnombreEstudiante.setText("");
-        this.jTFfechaNacimientoEstudiante.setText("");
+//        this.jTFidEstudiante.setEditable(true);
+//        this.jTFnombreEstudiante.setEditable(true);
+//        this.jDCfechaNacimientoEstudiante.setEnabled(true);
+//        this.jTFidEstudiante.setText("");
+//        this.jTFnombreEstudiante.setText("");
+//        this.jDCfechaNacimientoEstudiante.setDate(null);
+        this.limpiarCeldasRegistrar();
         this.jTFidEstudiante.requestFocus();
     }//GEN-LAST:event_jBnuevoRegistrarActionPerformed
 
     private void limpiarCeldasRegistrar(){
         this.jTFidEstudiante.setEditable(true);
         this.jTFnombreEstudiante.setEditable(true);
-        this.jTFfechaNacimientoEstudiante.setEditable(true);
+        this.jDCfechaNacimientoEstudiante.setEnabled(true);
         this.jTFidEstudiante.setText("");
         this.jTFnombreEstudiante.setText("");
-        this.jTFfechaNacimientoEstudiante.setText("");       
+        this.jDCfechaNacimientoEstudiante.setDate(null); //OJO
     }
     
-    private void jCalendarAgregarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendarAgregarPropertyChange
-        if(evt.getOldValue()!= null && this.jTFfechaNacimientoEstudiante.isEditable()){
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            String fnEstudiante = formato.format(this.jCalendarAgregar.getCalendar().getTime());
-            this.jTFfechaNacimientoEstudiante.setText(fnEstudiante);
-        }
-    }//GEN-LAST:event_jCalendarAgregarPropertyChange
-
     private void jTFfiltrarEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarEstudianteKeyReleased
         if(this.jRBidEstudiante.isSelected()){
             this.metodoTabla.consultarEstudiante(cn, "idEstudiante", this.jTFfiltrarEstudiante.getText(), tabla);
@@ -592,11 +545,18 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             int fila = this.jTlistaEstudiantes.getSelectedRow();
             String id = tabla.getValueAt(fila, 0).toString();
             String nombre = tabla.getValueAt(fila, 1).toString();
-            String fecha = tabla.getValueAt(fila, 2).toString();
+            String fechaNacimiento = tabla.getValueAt(fila, 2).toString();
             
             this.JTFidEstudianteModificar.setText(id);
             this.jTFnombreEstudianteModificar.setText(nombre);
-            this.jTFfechaNacimientoEstudianteModificar.setText(fecha);
+//            this.jTFfechaNacimientoEstudianteModificar.setText(fechaNacimiento);
+            try {
+                fecha = formato.parse(fechaNacimiento);
+            } catch (ParseException ex) {
+                Logger.getLogger(JFEstudianteReal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.jDCfechaNacimientoEstudianteModificar.setDate(fecha);
+            
         }
     }//GEN-LAST:event_jTlistaEstudiantesMouseClicked
 
@@ -605,7 +565,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         if(opcion == JOptionPane.YES_OPTION){
             String idEstudiante = this.JTFidEstudianteModificar.getText();
             String nombreActualizado = this.jTFnombreEstudianteModificar.getText();
-            String fechaActualizada = this.jTFfechaNacimientoEstudianteModificar.getText();
+//            String fechaActualizada = this.jTFfechaNacimientoEstudianteModificar.getText();
+            String fechaActualizada = this.formato.format(this.jDCfechaNacimientoEstudianteModificar.getDate());
 
             this.consulta.actualizarEstudiante(cn, idEstudiante, nombreActualizado, fechaActualizada);
             this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
@@ -619,19 +580,12 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBactualizarDatosActionPerformed
 
-    private void jCalendarModificarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendarModificarPropertyChange
-        if(evt.getOldValue()!= null){
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            String fnEstudiante = formato.format(this.jCalendarModificar.getCalendar().getTime());
-            this.jTFfechaNacimientoEstudianteModificar.setText(fnEstudiante);
-        }
-    }//GEN-LAST:event_jCalendarModificarPropertyChange
-
     private void jBnuevoActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActualizarActionPerformed
         this.BGfiltrar.clearSelection();
         this.JTFidEstudianteModificar.setText("");
         this.jTFnombreEstudianteModificar.setText("");
-        this.jTFfechaNacimientoEstudianteModificar.setText("");
+        this.jDCfechaNacimientoEstudianteModificar.setDate(null);
+//        this.jTFfechaNacimientoEstudianteModificar.setText("");
         this.jTFfiltrarEstudiante.setText("");
     }//GEN-LAST:event_jBnuevoActualizarActionPerformed
  
@@ -646,7 +600,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             
             this.JTFidEstudianteModificar.setText("");
             this.jTFnombreEstudianteModificar.setText("");
-            this.jTFfechaNacimientoEstudianteModificar.setText("");
+//            this.jTFfechaNacimientoEstudianteModificar.setText("");
+            this.jDCfechaNacimientoEstudianteModificar.setDate(null);
             
             this.jTFfiltrarEstudiante.setText("");
             this.limpiarCeldasRegistrar();
@@ -710,8 +665,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     private javax.swing.JButton jBnuevoActualizar;
     private javax.swing.JButton jBnuevoRegistrar;
     private javax.swing.JButton jBregistrar;
-    private com.toedter.calendar.JCalendar jCalendarAgregar;
-    private com.toedter.calendar.JCalendar jCalendarModificar;
+    private com.toedter.calendar.JDateChooser jDCfechaNacimientoEstudiante;
+    private com.toedter.calendar.JDateChooser jDCfechaNacimientoEstudianteModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -725,18 +680,15 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnuvolverAlMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JPanel jPcalendario;
     private javax.swing.JRadioButton jRBidEstudiante;
     private javax.swing.JRadioButton jRBnombreEstudiante;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFfechaNacimientoEstudiante;
-    private javax.swing.JTextField jTFfechaNacimientoEstudianteModificar;
     private javax.swing.JTextField jTFfiltrarEstudiante;
     private javax.swing.JTextField jTFidEstudiante;
     private javax.swing.JTextField jTFnombreEstudiante;
