@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Acer123
  */
-public class JFLibroReal extends javax.swing.JFrame {
+public class JFPrestamoNoReal extends javax.swing.JFrame {
 
     ConexionBaseDatos con = new ConexionBaseDatos();
     Connection cn;
@@ -35,13 +35,13 @@ public class JFLibroReal extends javax.swing.JFrame {
     SimpleDateFormat formatoFecha;
     Date fecha;
     
-    public JFLibroReal() {
+    public JFPrestamoNoReal() {
         initComponents();
         this.setLocationRelativeTo(null);
         try {
             cn = con.conexion();
         } catch (SQLException ex) {
-            Logger.getLogger(JFLibroReal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFPrestamoNoReal.class.getName()).log(Level.SEVERE, null, ex);
         }
         consulta = new ConsultaBaseDatos();
         tablaLibro = (DefaultTableModel) this.jTlistalibros.getModel();
@@ -655,7 +655,7 @@ public class JFLibroReal extends javax.swing.JFrame {
                         .addComponent(jPAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -762,7 +762,7 @@ public class JFLibroReal extends javax.swing.JFrame {
             try {
                 fecha = formatoFecha.parse(fechaNacimientoAutor);
             } catch (ParseException ex) {
-                Logger.getLogger(JFLibroReal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JFPrestamoNoReal.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.jDCfechaNacimientoAutor.setDate(fecha);
             
@@ -853,7 +853,7 @@ public class JFLibroReal extends javax.swing.JFrame {
             try {
                 fecha = formatoFecha.parse(fechaPublicacion);
             } catch (ParseException ex) {
-                Logger.getLogger(JFLibroReal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JFPrestamoNoReal.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.jDCfechaPublicacionLibroModificar.setDate(fecha);
             this.jTFstockLibroModificar.setText(stock);
@@ -930,14 +930,78 @@ public class JFLibroReal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPrestamoNoReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPrestamoNoReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPrestamoNoReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPrestamoNoReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1006,7 +1070,7 @@ public class JFLibroReal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFLibroReal().setVisible(true);
+                new JFPrestamoNoReal().setVisible(true);
             }
         });
     }

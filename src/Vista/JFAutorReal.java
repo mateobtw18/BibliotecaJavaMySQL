@@ -399,7 +399,7 @@ public class JFAutorReal extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTPautor.addTab("Modificar Datos", jPanel2);
+        jTPautor.addTab("Modificar Datos del Autor", jPanel2);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Autores"));
 

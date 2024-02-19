@@ -395,7 +395,7 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                 .addGap(0, 21, Short.MAX_VALUE))
         );
 
-        jTPestudiante.addTab("Modificar Datos", jPanel2);
+        jTPestudiante.addTab("Modificar Datos del Estudiante", jPanel2);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Estudiantes"));
 

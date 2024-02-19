@@ -141,20 +141,17 @@ public class ConsultaBaseDatos {
             ResultSet existe = ps1.executeQuery();
             
             if(!existe.next()){
-                if(this.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor) == true){
-                    JOptionPane.showMessageDialog(null, "El idAutor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
-                    PreparedStatement ps2 = cn.prepareStatement("INSERT INTO Libro VALUES (?,?,?,?,?)");
-                    ps2.setInt(1, Integer.parseInt(idLibro));
-                    ps2.setString(2, titulo);
-                    ps2.setInt(3, Integer.parseInt(idAutor));
-                    ps2.setString(4, fechaPublicacion);
-                    ps2.setInt(5, Integer.parseInt(stock));
-                    ps2.executeUpdate();        
-                    JOptionPane.showMessageDialog(null, "Libro registrado correctamente.", "Registrar libro", JOptionPane.INFORMATION_MESSAGE);                   
-                }
+                this.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor);
+//                    JOptionPane.showMessageDialog(null, "El idAutor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);                  
             }
+                PreparedStatement ps2 = cn.prepareStatement("INSERT INTO Libro VALUES (?,?,?,?,?)");
+                ps2.setInt(1, Integer.parseInt(idLibro));
+                ps2.setString(2, titulo);
+                ps2.setInt(3, Integer.parseInt(idAutor));
+                ps2.setString(4, fechaPublicacion);
+                ps2.setInt(5, Integer.parseInt(stock));
+                ps2.executeUpdate();        
+                JOptionPane.showMessageDialog(null, "Libro registrado correctamente.", "Registrar libro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar los datos.\n" + ex, "Error", JOptionPane.ERROR_MESSAGE);
             error = true;

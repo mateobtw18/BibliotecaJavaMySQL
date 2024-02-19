@@ -294,8 +294,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Modificar Datos">
-                <Property name="tabTitle" type="java.lang.String" value="Modificar Datos"/>
+              <JTabbedPaneConstraints tabName="Modificar Datos del Autor">
+                <Property name="tabTitle" type="java.lang.String" value="Modificar Datos del Autor"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
