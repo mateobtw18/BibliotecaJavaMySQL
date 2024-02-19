@@ -11,6 +11,7 @@ public class JFMenu extends javax.swing.JFrame {
 
     JFEstudianteReal jfEstudiante;
     JFAutorReal jfAutor;
+    JFLibroReal jfLibro;
     
     public JFMenu() {
         initComponents();
@@ -131,7 +132,9 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMnuLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuLibroActionPerformed
-        // TODO add your handling code here:
+        jfLibro = new JFLibroReal();
+        jfLibro.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jMnuLibroActionPerformed
 
     private void jMnuPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPrestamoActionPerformed

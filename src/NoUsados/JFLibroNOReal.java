@@ -1,8 +1,9 @@
-package Vista;
+package NoUsados;
 
 import Conectar.ConexionBaseDatos;
 import Negocio.ConsultaBaseDatos;
 import Negocio.Tabla;
+import Vista.JFMenu;
 import java.awt.Image;
 import java.awt.Toolkit;
 //import Negocio.ConsultaMySQL;
@@ -24,35 +25,35 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author G3
  */
-public class JFEstudianteReal extends javax.swing.JFrame {
+public class JFLibroNOReal extends javax.swing.JFrame {
 
     ConexionBaseDatos con = new ConexionBaseDatos();
     Connection cn;
     ConsultaBaseDatos consulta;
     Tabla metodoTabla;
-    DefaultTableModel tablaEstudiante;
+    DefaultTableModel tabla;
     JFMenu jfMenu;
-    SimpleDateFormat formatoFecha;
+    SimpleDateFormat formato;
     Date fecha;
     
-    public JFEstudianteReal() {
+    public JFLibroNOReal() {
         initComponents();
         this.setLocationRelativeTo(null);
         try {
             cn = con.conexion();
         } catch (SQLException ex) {
-            Logger.getLogger(JFEstudianteReal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFLibroNOReal.class.getName()).log(Level.SEVERE, null, ex);
         }
         consulta = new ConsultaBaseDatos();
-        tablaEstudiante = (DefaultTableModel) this.jTlistaEstudiantes.getModel();
+        tabla = (DefaultTableModel) this.jTlistaEstudiantes.getModel();
         metodoTabla = new Tabla();
-        this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
+        this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
         BGfiltrar.add(jRBidEstudiante);
         BGfiltrar.add(jRBnombreEstudiante);
         this.JTFidEstudianteModificar.setEditable(false);
         this.limpiarCeldasRegistrar();
         this.jDCfechaNacimientoEstudiante.setEnabled(true);
-        formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        formato = new SimpleDateFormat("yyyy-MM-dddd");
     }
 
     @Override
@@ -80,8 +81,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jTFidEstudiante = new javax.swing.JTextField();
         jDCfechaNacimientoEstudiante = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
-        jBregistrarEstudiante = new javax.swing.JButton();
-        jBnuevoRegistrarEstudiante = new javax.swing.JButton();
+        jBregistrar = new javax.swing.JButton();
+        jBnuevoRegistrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jRBidEstudiante = new javax.swing.JRadioButton();
@@ -95,9 +96,9 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jTFnombreEstudianteModificar = new javax.swing.JTextField();
         jDCfechaNacimientoEstudianteModificar = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jBactualizarDatosEstudiante = new javax.swing.JButton();
-        jBeliminarEstudiante = new javax.swing.JButton();
-        jBnuevoModificarEstudiante = new javax.swing.JButton();
+        jBactualizarDatos = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
+        jBnuevoActualizar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTlistaEstudiantes = new javax.swing.JTable();
@@ -120,18 +121,6 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jLabel2.setText("Nombre y Apellido:");
 
         jLabel3.setText("Fecha de Nacimiento:");
-
-        jTFnombreEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFnombreEstudianteKeyTyped(evt);
-            }
-        });
-
-        jTFidEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFidEstudianteKeyTyped(evt);
-            }
-        });
 
         jDCfechaNacimientoEstudiante.setDateFormatString("yyyy-MM-dd");
 
@@ -172,17 +161,17 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jBregistrarEstudiante.setText("Registrar Estudiante");
-        jBregistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jBregistrar.setText("Registrar Estudiante");
+        jBregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBregistrarEstudianteActionPerformed(evt);
+                jBregistrarActionPerformed(evt);
             }
         });
 
-        jBnuevoRegistrarEstudiante.setText("Agregar un Nuevo Estudiante");
-        jBnuevoRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jBnuevoRegistrar.setText("Agregar un Nuevo Estudiante");
+        jBnuevoRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevoRegistrarEstudianteActionPerformed(evt);
+                jBnuevoRegistrarActionPerformed(evt);
             }
         });
 
@@ -192,9 +181,9 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jBregistrarEstudiante)
+                .addComponent(jBregistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jBnuevoRegistrarEstudiante)
+                .addComponent(jBnuevoRegistrar)
                 .addGap(41, 41, 41))
         );
         jPanel5Layout.setVerticalGroup(
@@ -202,8 +191,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBregistrarEstudiante)
-                    .addComponent(jBnuevoRegistrarEstudiante))
+                    .addComponent(jBregistrar)
+                    .addComponent(jBnuevoRegistrar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -228,7 +217,7 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jTPestudiante.addTab("Registrar Estudiante", jPanel1);
+        jTPestudiante.addTab("Registrar Libro", jPanel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -241,9 +230,6 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jTFfiltrarEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFfiltrarEstudianteKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFfiltrarEstudianteKeyTyped(evt);
             }
         });
 
@@ -278,12 +264,6 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         jLabel5.setText("Nombre y Apellido:");
 
         jLabel6.setText("Fecha de Nacimiento:");
-
-        jTFnombreEstudianteModificar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFnombreEstudianteModificarKeyTyped(evt);
-            }
-        });
 
         jDCfechaNacimientoEstudianteModificar.setDateFormatString("yyyy-MM-dd");
 
@@ -324,24 +304,24 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jBactualizarDatosEstudiante.setText("Actualizar Datos");
-        jBactualizarDatosEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jBactualizarDatos.setText("Actualizar Datos");
+        jBactualizarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBactualizarDatosEstudianteActionPerformed(evt);
+                jBactualizarDatosActionPerformed(evt);
             }
         });
 
-        jBeliminarEstudiante.setText("Eliminar Estudiante");
-        jBeliminarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jBeliminar.setText("Eliminar Estudiante");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeliminarEstudianteActionPerformed(evt);
+                jBeliminarActionPerformed(evt);
             }
         });
 
-        jBnuevoModificarEstudiante.setText("Nuevo");
-        jBnuevoModificarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jBnuevoActualizar.setText("Nuevo");
+        jBnuevoActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevoModificarEstudianteActionPerformed(evt);
+                jBnuevoActualizarActionPerformed(evt);
             }
         });
 
@@ -352,20 +332,20 @@ public class JFEstudianteReal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBeliminarEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBactualizarDatosEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBnuevoModificarEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBeliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBactualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBnuevoActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBactualizarDatosEstudiante)
+                .addComponent(jBactualizarDatos)
                 .addGap(18, 18, 18)
-                .addComponent(jBeliminarEstudiante)
+                .addComponent(jBeliminar)
                 .addGap(18, 18, 18)
-                .addComponent(jBnuevoModificarEstudiante)
+                .addComponent(jBnuevoActualizar)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -448,7 +428,7 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMnuvolverAlMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuvolverAlMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMnuvolverAlMenu.setText("Volver al Menú");
         jMnuvolverAlMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -499,36 +479,36 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     
 
     
-    private void jBregistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistrarEstudianteActionPerformed
+    private void jBregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistrarActionPerformed
+//        String idEstudiante = this.jTFidEstudiante.getText();
+//        String nombreEstudiante = this.jTFnombreEstudiante.getText();
+//        String fechaNacimientoEstudiante = this.jTFfechaNacimientoEstudiante.getText();
+//        
+//        this.consulta.registrarEstudiante(cn, idEstudiante, nombreEstudiante, fechaNacimientoEstudiante);
+//        this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+//        this.jTlistaEstudiantes.setModel(tabla);
+//        this.jTFidEstudiante.setEditable(false);
+//        this.jTFnombreEstudiante.setEditable(false);
+//        this.jTFfechaNacimientoEstudiante.setEditable(false);
+
         String idEstudiante = this.jTFidEstudiante.getText();
         String nombreEstudiante = this.jTFnombreEstudiante.getText();
-        String fechaNacimientoEstudiante = "";
-        if (this.jDCfechaNacimientoEstudiante.getDate() != null) {
-            fechaNacimientoEstudiante = this.formatoFecha.format(this.jDCfechaNacimientoEstudiante.getDate());
-        } else {
-            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha de nacimiento.", "Error", JOptionPane.ERROR_MESSAGE);
-            this.jDCfechaNacimientoEstudiante.setDate(null);
-        }                
+        String fechaNacimientoEstudiante = this.formato.format(this.jDCfechaNacimientoEstudiante.getDate());
         
-        if(idEstudiante.isEmpty() || nombreEstudiante.isEmpty() || this.jDCfechaNacimientoEstudiante.getDate() == null){
-            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de registrar.", "Error", JOptionPane.ERROR_MESSAGE);
+        if(this.consulta.registrarEstudiante(cn, idEstudiante, nombreEstudiante, fechaNacimientoEstudiante) == true){
+            this.limpiarCeldasRegistrar();
+            this.jTFidEstudiante.requestFocus();
         }
-        else{        
-            if(this.consulta.registrarEstudiante(cn, idEstudiante, nombreEstudiante, fechaNacimientoEstudiante) == true){
-                this.limpiarCeldasRegistrar();
-                this.jTFidEstudiante.requestFocus();
-            }
-            else{
-                this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
-                this.jTlistaEstudiantes.setModel(tablaEstudiante);
-                this.jTFidEstudiante.setEditable(false);
-                this.jTFnombreEstudiante.setEditable(false);
-                this.jDCfechaNacimientoEstudiante.setEnabled(false);
-            }
+        else{
+            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+            this.jTlistaEstudiantes.setModel(tabla);
+            this.jTFidEstudiante.setEditable(false);
+            this.jTFnombreEstudiante.setEditable(false);
+            this.jDCfechaNacimientoEstudiante.setEnabled(false);
         }
-    }//GEN-LAST:event_jBregistrarEstudianteActionPerformed
+    }//GEN-LAST:event_jBregistrarActionPerformed
 
-    private void jBnuevoRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoRegistrarEstudianteActionPerformed
+    private void jBnuevoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoRegistrarActionPerformed
 //        this.jTFidEstudiante.setEditable(true);
 //        this.jTFnombreEstudiante.setEditable(true);
 //        this.jDCfechaNacimientoEstudiante.setEnabled(true);
@@ -537,9 +517,7 @@ public class JFEstudianteReal extends javax.swing.JFrame {
 //        this.jDCfechaNacimientoEstudiante.setDate(null);
         this.limpiarCeldasRegistrar();
         this.jTFidEstudiante.requestFocus();
-        this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
-        this.jTlistaEstudiantes.setModel(tablaEstudiante);
-    }//GEN-LAST:event_jBnuevoRegistrarEstudianteActionPerformed
+    }//GEN-LAST:event_jBnuevoRegistrarActionPerformed
 
     private void limpiarCeldasRegistrar(){
         this.jTFidEstudiante.setEditable(true);
@@ -552,10 +530,10 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     
     private void jTFfiltrarEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarEstudianteKeyReleased
         if(this.jRBidEstudiante.isSelected()){
-            this.metodoTabla.consultarEstudiante(cn, "idEstudiante", this.jTFfiltrarEstudiante.getText(), tablaEstudiante);
+            this.metodoTabla.consultarEstudiante(cn, "idEstudiante", this.jTFfiltrarEstudiante.getText(), tabla);
         }
         else if(this.jRBnombreEstudiante.isSelected()){
-            this.metodoTabla.consultarEstudiante(cn, "NombreEstudiante", this.jTFfiltrarEstudiante.getText(), tablaEstudiante);
+            this.metodoTabla.consultarEstudiante(cn, "NombreEstudiante", this.jTFfiltrarEstudiante.getText(), tabla);
         }
         else{
             JOptionPane.showMessageDialog(null, "Elija un atributo para filtrar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -566,75 +544,73 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     private void jTlistaEstudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistaEstudiantesMouseClicked
         if(this.jTPestudiante.getSelectedIndex() == 1){
             int fila = this.jTlistaEstudiantes.getSelectedRow();
-            String id = tablaEstudiante.getValueAt(fila, 0).toString();
-            String nombre = tablaEstudiante.getValueAt(fila, 1).toString();
-            String fechaNacimiento = tablaEstudiante.getValueAt(fila, 2).toString();
+            String id = tabla.getValueAt(fila, 0).toString();
+            String nombre = tabla.getValueAt(fila, 1).toString();
+            String fechaNacimiento = tabla.getValueAt(fila, 2).toString();
             
             this.JTFidEstudianteModificar.setText(id);
             this.jTFnombreEstudianteModificar.setText(nombre);
 //            this.jTFfechaNacimientoEstudianteModificar.setText(fechaNacimiento);
             try {
-                fecha = formatoFecha.parse(fechaNacimiento);
+                fecha = formato.parse(fechaNacimiento);
             } catch (ParseException ex) {
-                Logger.getLogger(JFEstudianteReal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JFLibroNOReal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.jDCfechaNacimientoEstudianteModificar.setDate(fecha); 
+            this.jDCfechaNacimientoEstudianteModificar.setDate(fecha);
+            
         }
     }//GEN-LAST:event_jTlistaEstudiantesMouseClicked
 
-    private void jBactualizarDatosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBactualizarDatosEstudianteActionPerformed
-        String idEstudiante = this.JTFidEstudianteModificar.getText();
-        String nombreActualizado = this.jTFnombreEstudianteModificar.getText();
-        String fechaActualizada = this.formatoFecha.format(this.jDCfechaNacimientoEstudianteModificar.getDate());        
-        
-        if(nombreActualizado.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
-            this.jTFnombreEstudianteModificar.requestFocus();
-        }
-        else{          
-            int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de actualizar los datos...?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if(opcion == JOptionPane.YES_OPTION){
-                this.consulta.actualizarEstudiante(cn, idEstudiante, nombreActualizado, fechaActualizada);
-                this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
-                this.jTlistaEstudiantes.setModel(tablaEstudiante);
+    private void jBactualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBactualizarDatosActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de actualizar los datos...?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(opcion == JOptionPane.YES_OPTION){
+            String idEstudiante = this.JTFidEstudianteModificar.getText();
+            String nombreActualizado = this.jTFnombreEstudianteModificar.getText();
+//            String fechaActualizada = this.jTFfechaNacimientoEstudianteModificar.getText();
+            String fechaActualizada = this.formato.format(this.jDCfechaNacimientoEstudianteModificar.getDate());
 
-                this.jTFfiltrarEstudiante.setText("");     
-                this.limpiarCeldasRegistrar();
-            }
-        }
-    }//GEN-LAST:event_jBactualizarDatosEstudianteActionPerformed
+            this.consulta.actualizarEstudiante(cn, idEstudiante, nombreActualizado, fechaActualizada);
+            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+            this.jTlistaEstudiantes.setModel(tabla);
 
-    private void jBnuevoModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoModificarEstudianteActionPerformed
+            this.jTFfiltrarEstudiante.setText("");     
+//            this.jTFidEstudiante.setText("");
+//            this.jTFnombreEstudiante.setText("");
+//            this.jTFfechaNacimientoEstudiante.setText("");
+            this.limpiarCeldasRegistrar();
+        }
+    }//GEN-LAST:event_jBactualizarDatosActionPerformed
+
+    private void jBnuevoActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActualizarActionPerformed
         this.BGfiltrar.clearSelection();
         this.JTFidEstudianteModificar.setText("");
         this.jTFnombreEstudianteModificar.setText("");
         this.jDCfechaNacimientoEstudianteModificar.setDate(null);
 //        this.jTFfechaNacimientoEstudianteModificar.setText("");
         this.jTFfiltrarEstudiante.setText("");
-        this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
-        this.jTlistaEstudiantes.setModel(tablaEstudiante); ///OJOOJO
-    }//GEN-LAST:event_jBnuevoModificarEstudianteActionPerformed
+    }//GEN-LAST:event_jBnuevoActualizarActionPerformed
  
-    private void jBeliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarEstudianteActionPerformed
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        String id = this.JTFidEstudianteModificar.getText();
+        
         int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar al estudiante...?", "Eliminar Estudiante", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(opcion == JOptionPane.YES_OPTION){
-            String idEstudiante = this.JTFidEstudianteModificar.getText();
-            this.consulta.eliminarEstudiante(cn, idEstudiante);
-            this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
-            this.jTlistaEstudiantes.setModel(tablaEstudiante);
+            this.consulta.eliminarEstudiante(cn, id);
+            this.metodoTabla.actualizarTablaEstudiante(cn, tabla);
+            this.jTlistaEstudiantes.setModel(tabla);
             
             this.JTFidEstudianteModificar.setText("");
             this.jTFnombreEstudianteModificar.setText("");
 //            this.jTFfechaNacimientoEstudianteModificar.setText("");
             this.jDCfechaNacimientoEstudianteModificar.setDate(null);
-            this.BGfiltrar.clearSelection();
+            
             this.jTFfiltrarEstudiante.setText("");
             this.limpiarCeldasRegistrar();
 //            this.jTFidEstudiante.setText("");
 //            this.jTFnombreEstudiante.setText("");
 //            this.jTFfechaNacimientoEstudiante.setText("");
         }
-    }//GEN-LAST:event_jBeliminarEstudianteActionPerformed
+    }//GEN-LAST:event_jBeliminarActionPerformed
 
     private void jMnuvolverAlMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuvolverAlMenuActionPerformed
         jfMenu = new JFMenu();
@@ -645,47 +621,6 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     private void jMnusalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnusalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMnusalirActionPerformed
-
-    private void jTFidEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidEstudianteKeyTyped
-        char caracter = evt.getKeyChar(); 
-        if(Character.isLetter(caracter)){ 
-            evt.consume(); //ya no lo va a usar y borra el caracter 
-            JOptionPane.showMessageDialog(null, "Ingrese solamente números.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
-        }          
-    }//GEN-LAST:event_jTFidEstudianteKeyTyped
-
-    private void jTFnombreEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnombreEstudianteKeyTyped
-        char caracter = evt.getKeyChar(); 
-        if(Character.isDigit(caracter)){ 
-            evt.consume(); //ya no lo va a usar y borra el caracter 
-            JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
-        }
-    }//GEN-LAST:event_jTFnombreEstudianteKeyTyped
-
-    private void jTFnombreEstudianteModificarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnombreEstudianteModificarKeyTyped
-        char caracter = evt.getKeyChar(); 
-        if(Character.isDigit(caracter)){ 
-            evt.consume(); //ya no lo va a usar y borra el caracter 
-            JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
-        }
-    }//GEN-LAST:event_jTFnombreEstudianteModificarKeyTyped
-
-    private void jTFfiltrarEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarEstudianteKeyTyped
-        if(this.jRBidEstudiante.isSelected()){
-            char caracter = evt.getKeyChar(); 
-            if(Character.isLetter(caracter)){ 
-                evt.consume(); //ya no lo va a usar y borra el caracter 
-                JOptionPane.showMessageDialog(null, "Ingrese solamente números.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
-            } 
-        }
-        else if(this.jRBnombreEstudiante.isSelected()){
-            char caracter = evt.getKeyChar(); 
-            if(Character.isDigit(caracter)){ 
-                evt.consume(); //ya no lo va a usar y borra el caracter 
-                JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
-            }            
-        }
-    }//GEN-LAST:event_jTFfiltrarEstudianteKeyTyped
 
     /**
      * @param args the command line arguments
@@ -704,21 +639,27 @@ public class JFEstudianteReal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFEstudianteReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroNOReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFEstudianteReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroNOReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFEstudianteReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroNOReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFEstudianteReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroNOReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFEstudianteReal().setVisible(true);
+                new JFLibroNOReal().setVisible(true);
             }
         });
     }
@@ -726,11 +667,11 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BGfiltrar;
     private javax.swing.JTextField JTFidEstudianteModificar;
-    private javax.swing.JButton jBactualizarDatosEstudiante;
-    private javax.swing.JButton jBeliminarEstudiante;
-    private javax.swing.JButton jBnuevoModificarEstudiante;
-    private javax.swing.JButton jBnuevoRegistrarEstudiante;
-    private javax.swing.JButton jBregistrarEstudiante;
+    private javax.swing.JButton jBactualizarDatos;
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBnuevoActualizar;
+    private javax.swing.JButton jBnuevoRegistrar;
+    private javax.swing.JButton jBregistrar;
     private com.toedter.calendar.JDateChooser jDCfechaNacimientoEstudiante;
     private com.toedter.calendar.JDateChooser jDCfechaNacimientoEstudianteModificar;
     private javax.swing.JLabel jLabel1;

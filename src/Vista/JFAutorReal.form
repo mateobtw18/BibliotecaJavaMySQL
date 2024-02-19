@@ -19,7 +19,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMnuvolverAlMenu">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+V"/>
+                  <KeyStroke key="Ctrl+M"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Volver al Men&#xfa;"/>
               </Properties>
@@ -213,8 +213,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFnombreAutor">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFnombreAutorKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFidAutor">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFidAutorKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDCfechaNacimientoAutor">
                   <Properties>
@@ -237,9 +243,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="jBregistrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBregistrarAutor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="91" max="32767" attributes="0"/>
-                          <Component id="jBnuevoRegistrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBnuevoRegistrarAutor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -249,8 +255,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBregistrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBnuevoRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBregistrarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBnuevoRegistrarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="15" max="32767" attributes="0"/>
                       </Group>
@@ -258,20 +264,20 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jBregistrar">
+                <Component class="javax.swing.JButton" name="jBregistrarAutor">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Registrar Autor"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBregistrarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBregistrarAutorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBnuevoRegistrar">
+                <Component class="javax.swing.JButton" name="jBnuevoRegistrarAutor">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar un Nuevo Autor"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoRegistrarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoRegistrarAutorActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -378,6 +384,7 @@
                 <Component class="javax.swing.JTextField" name="jTFfiltrarAutor">
                   <Events>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFfiltrarAutorKeyReleased"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFfiltrarAutorKeyTyped"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -453,6 +460,9 @@
                 <Component class="javax.swing.JTextField" name="JTFidAutorModificar">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFnombreAutorModificar">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFnombreAutorModificarKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDCfechaNacimientoAutorModificar">
                   <Properties>
@@ -476,9 +486,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jBactualizarDatos" max="32767" attributes="0"/>
-                              <Component id="jBeliminar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jBnuevoActualizar" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jBactualizarDatosAutor" max="32767" attributes="0"/>
+                              <Component id="jBeliminarAutor" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jBnuevoModificarAutor" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
@@ -488,39 +498,39 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jBactualizarDatos" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBactualizarDatosAutor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBeliminar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBeliminarAutor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBnuevoActualizar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBnuevoModificarAutor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="23" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jBactualizarDatos">
+                <Component class="javax.swing.JButton" name="jBactualizarDatosAutor">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Actualizar Datos"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBactualizarDatosActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBactualizarDatosAutorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBeliminar">
+                <Component class="javax.swing.JButton" name="jBeliminarAutor">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar Autor"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarAutorActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBnuevoActualizar">
+                <Component class="javax.swing.JButton" name="jBnuevoModificarAutor">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoActualizarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoModificarAutorActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

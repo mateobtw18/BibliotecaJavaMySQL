@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Acer123
+ * @author REAL
  */
 public class Tabla {
 //    private DefaultTableModel tabla;
@@ -117,6 +117,67 @@ public class Tabla {
             ps.close();
             rs.close();
         }
+        catch (SQLException e) {
+            e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
+        }
+    }
+        
+    public void actualizarTablaLibro(Connection cn, DefaultTableModel tabla) {
+        String consulta = "SELECT * FROM libro";
+        try {
+            PreparedStatement ps = cn.prepareStatement(consulta);
+            ResultSet rs = ps.executeQuery();
+
+            tabla.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+
+            while (rs.next()) {
+                Object[] libro = new Object[5];
+                libro[0] = rs.getInt("idLibro");
+                libro[1] = rs.getString("Titulo");
+                libro[2] = rs.getInt("idAutor");
+                libro[3] = rs.getString("FechaPublicacion");
+                libro[4] = rs.getInt("Stock");
+
+                tabla.addRow(libro);
+            }
+
+            // Notificar a la tabla que se han realizado cambios en el modelo
+//            tabla.fireTableDataChanged();
+
+            // Cerrar recursos
+            ps.close();
+            rs.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
+        }
+    }
+
+    public void consultarLibro(Connection cn, String atributoABuscar, String texto, DefaultTableModel tabla){
+        String consultaSQL = "SELECT * FROM libro WHERE " + atributoABuscar + " LIKE ?";
+        try {
+            PreparedStatement ps = cn.prepareStatement(consultaSQL);
+        // Configurar el parámetro para evitar inyección SQL y manejar las comillas
+            ps.setString(1, texto + "%");
+            ResultSet rs = ps.executeQuery();
+
+            tabla.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+
+            while(rs.next()) {
+                Object[] libro = new Object[5];
+                libro[0] = rs.getInt("idLibro");
+                libro[1] = rs.getString("Titulo");
+                libro[2] = rs.getInt("idAutor");               
+                libro[3] = rs.getString("FechaPublicacion");
+                libro[4] = rs.getInt("Stock");
+                
+
+                tabla.addRow(libro);
+            }
+            // Cerrar recursos
+            ps.close();
+            rs.close();
+        } 
         catch (SQLException e) {
             e.printStackTrace(); // Manejo básico de excepciones, adaptar según sea necesario
         }

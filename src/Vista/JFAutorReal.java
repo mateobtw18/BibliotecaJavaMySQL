@@ -30,9 +30,9 @@ public class JFAutorReal extends javax.swing.JFrame {
     Connection cn;
     ConsultaBaseDatos consulta;
     Tabla metodoTabla;
-    DefaultTableModel tabla;
+    DefaultTableModel tablaAutor;
     JFMenu jfMenu;
-    SimpleDateFormat formato;
+    SimpleDateFormat formatoFecha;
     Date fecha;
     
     public JFAutorReal() {
@@ -44,15 +44,15 @@ public class JFAutorReal extends javax.swing.JFrame {
             Logger.getLogger(JFAutorReal.class.getName()).log(Level.SEVERE, null, ex);
         }
         consulta = new ConsultaBaseDatos();
-        tabla = (DefaultTableModel) this.jTlistaAutores.getModel();
+        tablaAutor = (DefaultTableModel) this.jTlistaAutores.getModel();
         metodoTabla = new Tabla();
-        this.metodoTabla.actualizarTablaAutor(cn, tabla);
+        this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
         BGfiltrar.add(jRBidAutor);
         BGfiltrar.add(jRBnombreAutor);
         this.JTFidAutorModificar.setEditable(false);
         this.limpiarCeldasRegistrar();
         this.jDCfechaNacimientoAutor.setEnabled(true); //QUE HACE
-        formato = new SimpleDateFormat("yyyy-MM-dddd");
+        formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
     }
 
     @Override
@@ -82,8 +82,8 @@ public class JFAutorReal extends javax.swing.JFrame {
         jTFidAutor = new javax.swing.JTextField();
         jDCfechaNacimientoAutor = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
-        jBregistrar = new javax.swing.JButton();
-        jBnuevoRegistrar = new javax.swing.JButton();
+        jBregistrarAutor = new javax.swing.JButton();
+        jBnuevoRegistrarAutor = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jRBidAutor = new javax.swing.JRadioButton();
@@ -97,9 +97,9 @@ public class JFAutorReal extends javax.swing.JFrame {
         jTFnombreAutorModificar = new javax.swing.JTextField();
         jDCfechaNacimientoAutorModificar = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jBactualizarDatos = new javax.swing.JButton();
-        jBeliminar = new javax.swing.JButton();
-        jBnuevoActualizar = new javax.swing.JButton();
+        jBactualizarDatosAutor = new javax.swing.JButton();
+        jBeliminarAutor = new javax.swing.JButton();
+        jBnuevoModificarAutor = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTlistaAutores = new javax.swing.JTable();
@@ -124,6 +124,18 @@ public class JFAutorReal extends javax.swing.JFrame {
         jLabel2.setText("Nombre y Apellido:");
 
         jLabel3.setText("Fecha de Nacimiento:");
+
+        jTFnombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFnombreAutorKeyTyped(evt);
+            }
+        });
+
+        jTFidAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFidAutorKeyTyped(evt);
+            }
+        });
 
         jDCfechaNacimientoAutor.setDateFormatString("yyyy-MM-dd");
 
@@ -164,17 +176,17 @@ public class JFAutorReal extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jBregistrar.setText("Registrar Autor");
-        jBregistrar.addActionListener(new java.awt.event.ActionListener() {
+        jBregistrarAutor.setText("Registrar Autor");
+        jBregistrarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBregistrarActionPerformed(evt);
+                jBregistrarAutorActionPerformed(evt);
             }
         });
 
-        jBnuevoRegistrar.setText("Agregar un Nuevo Autor");
-        jBnuevoRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        jBnuevoRegistrarAutor.setText("Agregar un Nuevo Autor");
+        jBnuevoRegistrarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevoRegistrarActionPerformed(evt);
+                jBnuevoRegistrarAutorActionPerformed(evt);
             }
         });
 
@@ -184,9 +196,9 @@ public class JFAutorReal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jBregistrar)
+                .addComponent(jBregistrarAutor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jBnuevoRegistrar)
+                .addComponent(jBnuevoRegistrarAutor)
                 .addGap(48, 48, 48))
         );
         jPanel5Layout.setVerticalGroup(
@@ -194,8 +206,8 @@ public class JFAutorReal extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBregistrar)
-                    .addComponent(jBnuevoRegistrar))
+                    .addComponent(jBregistrarAutor)
+                    .addComponent(jBnuevoRegistrarAutor))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -234,6 +246,9 @@ public class JFAutorReal extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFfiltrarAutorKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFfiltrarAutorKeyTyped(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -267,6 +282,12 @@ public class JFAutorReal extends javax.swing.JFrame {
         jLabel5.setText("Nombre y Apellido:");
 
         jLabel6.setText("Fecha de Nacimiento:");
+
+        jTFnombreAutorModificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFnombreAutorModificarKeyTyped(evt);
+            }
+        });
 
         jDCfechaNacimientoAutorModificar.setDateFormatString("yyyy-MM-dd");
 
@@ -307,24 +328,24 @@ public class JFAutorReal extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        jBactualizarDatos.setText("Actualizar Datos");
-        jBactualizarDatos.addActionListener(new java.awt.event.ActionListener() {
+        jBactualizarDatosAutor.setText("Actualizar Datos");
+        jBactualizarDatosAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBactualizarDatosActionPerformed(evt);
+                jBactualizarDatosAutorActionPerformed(evt);
             }
         });
 
-        jBeliminar.setText("Eliminar Autor");
-        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+        jBeliminarAutor.setText("Eliminar Autor");
+        jBeliminarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeliminarActionPerformed(evt);
+                jBeliminarAutorActionPerformed(evt);
             }
         });
 
-        jBnuevoActualizar.setText("Nuevo");
-        jBnuevoActualizar.addActionListener(new java.awt.event.ActionListener() {
+        jBnuevoModificarAutor.setText("Nuevo");
+        jBnuevoModificarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevoActualizarActionPerformed(evt);
+                jBnuevoModificarAutorActionPerformed(evt);
             }
         });
 
@@ -335,20 +356,20 @@ public class JFAutorReal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBactualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBeliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBnuevoActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBactualizarDatosAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBeliminarAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBnuevoModificarAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBactualizarDatos)
+                .addComponent(jBactualizarDatosAutor)
                 .addGap(18, 18, 18)
-                .addComponent(jBeliminar)
+                .addComponent(jBeliminarAutor)
                 .addGap(18, 18, 18)
-                .addComponent(jBnuevoActualizar)
+                .addComponent(jBnuevoModificarAutor)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -431,7 +452,7 @@ public class JFAutorReal extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMnuvolverAlMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuvolverAlMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMnuvolverAlMenu.setText("Volver al Menú");
         jMnuvolverAlMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,34 +503,39 @@ public class JFAutorReal extends javax.swing.JFrame {
     
 
     
-    private void jBregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistrarActionPerformed
+    private void jBregistrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBregistrarAutorActionPerformed
         String idAutor = this.jTFidAutor.getText();
         String nombreAutor = this.jTFnombreAutor.getText();
-        String fechaNacimientoAutor = this.formato.format(this.jDCfechaNacimientoAutor.getDate());
+        String fechaNacimientoAutor = "";
+        if (this.jDCfechaNacimientoAutor.getDate() != null) {
+            fechaNacimientoAutor = this.formatoFecha.format(this.jDCfechaNacimientoAutor.getDate());
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha de nacimiento.", "Error", JOptionPane.ERROR_MESSAGE);
+            this.jDCfechaNacimientoAutor.setDate(null);
+        }
         
-        if(this.consulta.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor) == true){
-            this.limpiarCeldasRegistrar();
-            this.jTFidAutor.requestFocus();
+        if(idAutor.isEmpty() || nombreAutor.isEmpty() || this.jDCfechaNacimientoAutor.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de registrar.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            this.metodoTabla.actualizarTablaAutor(cn, tabla);
-            this.jTlistaAutores.setModel(tabla);
-            this.jTFidAutor.setEditable(false);
-            this.jTFnombreAutor.setEditable(false);
-            this.jDCfechaNacimientoAutor.setEnabled(false);
+            if(this.consulta.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor) == true){
+                this.limpiarCeldasRegistrar();
+                this.jTFidAutor.requestFocus();
+            }
+            else{
+                this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
+                this.jTlistaAutores.setModel(tablaAutor);
+                this.jTFidAutor.setEditable(false);
+                this.jTFnombreAutor.setEditable(false);
+                this.jDCfechaNacimientoAutor.setEnabled(false);
+            }
         }
-    }//GEN-LAST:event_jBregistrarActionPerformed
+    }//GEN-LAST:event_jBregistrarAutorActionPerformed
 
-    private void jBnuevoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoRegistrarActionPerformed
-//        this.jTFidAutor.setEditable(true);
-//        this.jTFnombreAutor.setEditable(true);
-//        this.jDCfechaNacimientoAutor.setEnabled(true);
-//        this.jTFidAutor.setText("");
-//        this.jTFnombreAutor.setText("");
-//        this.jDCfechaNacimientoAutor.setDate(null);
+    private void jBnuevoRegistrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoRegistrarAutorActionPerformed
         this.limpiarCeldasRegistrar();
         this.jTFidAutor.requestFocus();
-    }//GEN-LAST:event_jBnuevoRegistrarActionPerformed
+    }//GEN-LAST:event_jBnuevoRegistrarAutorActionPerformed
 
     private void limpiarCeldasRegistrar(){
         this.jTFidAutor.setEditable(true);
@@ -522,10 +548,10 @@ public class JFAutorReal extends javax.swing.JFrame {
     
     private void jTFfiltrarAutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarAutorKeyReleased
         if(this.jRBidAutor.isSelected()){
-            this.metodoTabla.consultarAutor(cn, "idAutor", this.jTFfiltrarAutor.getText(), tabla);
+            this.metodoTabla.consultarAutor(cn, "idAutor", this.jTFfiltrarAutor.getText(), tablaAutor);
         }
         else if(this.jRBnombreAutor.isSelected()){
-            this.metodoTabla.consultarAutor(cn, "NombreAutor", this.jTFfiltrarAutor.getText(), tabla);
+            this.metodoTabla.consultarAutor(cn, "NombreAutor", this.jTFfiltrarAutor.getText(), tablaAutor);
         }
         else{
             JOptionPane.showMessageDialog(null, "Elija un atributo para filtrar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -536,15 +562,15 @@ public class JFAutorReal extends javax.swing.JFrame {
     private void jTlistaAutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistaAutoresMouseClicked
         if(this.jTPautor.getSelectedIndex() == 1){
             int fila = this.jTlistaAutores.getSelectedRow();
-            String id = tabla.getValueAt(fila, 0).toString();
-            String nombre = tabla.getValueAt(fila, 1).toString();
-            String fechaNacimiento = tabla.getValueAt(fila, 2).toString();
+            String id = tablaAutor.getValueAt(fila, 0).toString();
+            String nombre = tablaAutor.getValueAt(fila, 1).toString();
+            String fechaNacimiento = tablaAutor.getValueAt(fila, 2).toString();
             
             this.JTFidAutorModificar.setText(id);
             this.jTFnombreAutorModificar.setText(nombre);
 //            this.jTFfechaNacimientoAutorModificar.setText(fecha);
             try {
-                fecha = formato.parse(fechaNacimiento);
+                fecha = formatoFecha.parse(fechaNacimiento);
             } catch (ParseException ex) {
                 Logger.getLogger(JFAutorReal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -552,47 +578,54 @@ public class JFAutorReal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTlistaAutoresMouseClicked
 
-    private void jBactualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBactualizarDatosActionPerformed
-        int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de actualizar los datos...?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(opcion == JOptionPane.YES_OPTION){
-            String idAutor = this.JTFidAutorModificar.getText();
-            String nombreActualizado = this.jTFnombreAutorModificar.getText();
-            String fechaActualizada = this.formato.format(this.jDCfechaNacimientoAutorModificar.getDate());
-
-            this.consulta.actualizarAutor(cn, idAutor, nombreActualizado, fechaActualizada);
-            this.metodoTabla.actualizarTablaAutor(cn, tabla);
-            this.jTlistaAutores.setModel(tabla);
-
-            this.jTFfiltrarAutor.setText("");     
-            this.limpiarCeldasRegistrar();
+    private void jBactualizarDatosAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBactualizarDatosAutorActionPerformed
+        String idAutor = this.JTFidAutorModificar.getText();
+        String nombreActualizado = this.jTFnombreAutorModificar.getText();
+        String fechaActualizada = this.formatoFecha.format(this.jDCfechaNacimientoAutorModificar.getDate());
+        
+        if(nombreActualizado.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            this.jTFnombreAutorModificar.requestFocus();           
         }
-    }//GEN-LAST:event_jBactualizarDatosActionPerformed
+        else{
+            int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de actualizar los datos...?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(opcion == JOptionPane.YES_OPTION){
+                this.consulta.actualizarAutor(cn, idAutor, nombreActualizado, fechaActualizada);
+                this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
+                this.jTlistaAutores.setModel(tablaAutor);
 
-    private void jBnuevoActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActualizarActionPerformed
+                this.jTFfiltrarAutor.setText("");     
+                this.limpiarCeldasRegistrar();
+            }
+        }
+    }//GEN-LAST:event_jBactualizarDatosAutorActionPerformed
+
+    private void jBnuevoModificarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoModificarAutorActionPerformed
         this.BGfiltrar.clearSelection();
         this.JTFidAutorModificar.setText("");
         this.jTFnombreAutorModificar.setText("");
         this.jDCfechaNacimientoAutorModificar.setDate(null);
         this.jTFfiltrarAutor.setText("");
-    }//GEN-LAST:event_jBnuevoActualizarActionPerformed
+        this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
+        this.jTlistaAutores.setModel(tablaAutor); // OJOJOJO
+    }//GEN-LAST:event_jBnuevoModificarAutorActionPerformed
  
-    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
-        String id = this.JTFidAutorModificar.getText();
-        
-        int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar al autor...?", "Eliminar autor", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    private void jBeliminarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarAutorActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar al autor...?\nTambién se eliminarán los libros asociados a él.", "Eliminar autor", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(opcion == JOptionPane.YES_OPTION){
-            this.consulta.eliminarAutor(cn, id);
-            this.metodoTabla.actualizarTablaAutor(cn, tabla);
-            this.jTlistaAutores.setModel(tabla);
+            String idAutor = this.JTFidAutorModificar.getText();
+            this.consulta.eliminarAutor(cn, idAutor);
+            this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
+            this.jTlistaAutores.setModel(tablaAutor);
             
             this.JTFidAutorModificar.setText("");
             this.jTFnombreAutorModificar.setText("");
             this.jDCfechaNacimientoAutorModificar.setDate(null);
-            
+            this.BGfiltrar.clearSelection();
             this.jTFfiltrarAutor.setText("");
             this.limpiarCeldasRegistrar();           
         }
-    }//GEN-LAST:event_jBeliminarActionPerformed
+    }//GEN-LAST:event_jBeliminarAutorActionPerformed
 
     private void jMnuvolverAlMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuvolverAlMenuActionPerformed
         jfMenu = new JFMenu();
@@ -603,6 +636,47 @@ public class JFAutorReal extends javax.swing.JFrame {
     private void jMnusalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnusalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMnusalirActionPerformed
+
+    private void jTFidAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidAutorKeyTyped
+        char caracter = evt.getKeyChar(); 
+        if(Character.isLetter(caracter)){ 
+            evt.consume(); //ya no lo va a usar y borra el caracter 
+            JOptionPane.showMessageDialog(null, "Ingrese solamente números.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
+        } 
+    }//GEN-LAST:event_jTFidAutorKeyTyped
+
+    private void jTFnombreAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnombreAutorKeyTyped
+        char caracter = evt.getKeyChar(); 
+        if(Character.isDigit(caracter)){ 
+            evt.consume(); //ya no lo va a usar y borra el caracter 
+            JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
+        }      
+    }//GEN-LAST:event_jTFnombreAutorKeyTyped
+
+    private void jTFnombreAutorModificarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnombreAutorModificarKeyTyped
+        char caracter = evt.getKeyChar(); 
+        if(Character.isDigit(caracter)){ 
+            evt.consume(); //ya no lo va a usar y borra el caracter 
+            JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
+        }
+    }//GEN-LAST:event_jTFnombreAutorModificarKeyTyped
+
+    private void jTFfiltrarAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarAutorKeyTyped
+        if(this.jRBidAutor.isSelected()){
+            char caracter = evt.getKeyChar(); 
+            if(Character.isLetter(caracter)){ 
+                evt.consume(); //ya no lo va a usar y borra el caracter 
+                JOptionPane.showMessageDialog(null, "Ingrese solamente números.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
+            } 
+        }
+        else if(this.jRBnombreAutor.isSelected()){
+            char caracter = evt.getKeyChar(); 
+            if(Character.isDigit(caracter)){ 
+                evt.consume(); //ya no lo va a usar y borra el caracter 
+                JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
+            }            
+        }        
+    }//GEN-LAST:event_jTFfiltrarAutorKeyTyped
 
     /**
      * @param args the command line arguments
@@ -649,11 +723,11 @@ public class JFAutorReal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BGfiltrar;
     private javax.swing.JTextField JTFidAutorModificar;
-    private javax.swing.JButton jBactualizarDatos;
-    private javax.swing.JButton jBeliminar;
-    private javax.swing.JButton jBnuevoActualizar;
-    private javax.swing.JButton jBnuevoRegistrar;
-    private javax.swing.JButton jBregistrar;
+    private javax.swing.JButton jBactualizarDatosAutor;
+    private javax.swing.JButton jBeliminarAutor;
+    private javax.swing.JButton jBnuevoModificarAutor;
+    private javax.swing.JButton jBnuevoRegistrarAutor;
+    private javax.swing.JButton jBregistrarAutor;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDCfechaNacimientoAutor;
     private com.toedter.calendar.JDateChooser jDCfechaNacimientoAutorModificar;

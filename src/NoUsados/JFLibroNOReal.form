@@ -14,7 +14,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMnuvolverAlMenu">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+M"/>
+                  <KeyStroke key="Ctrl+V"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Volver al Men&#xfa;"/>
               </Properties>
@@ -107,8 +107,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Registrar Estudiante">
-                <Property name="tabTitle" type="java.lang.String" value="Registrar Estudiante"/>
+              <JTabbedPaneConstraints tabName="Registrar Libro">
+                <Property name="tabTitle" type="java.lang.String" value="Registrar Libro"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -208,14 +208,8 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFnombreEstudiante">
-                  <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFnombreEstudianteKeyTyped"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFidEstudiante">
-                  <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFidEstudianteKeyTyped"/>
-                  </Events>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDCfechaNacimientoEstudiante">
                   <Properties>
@@ -238,9 +232,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jBregistrarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBregistrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="69" max="32767" attributes="0"/>
-                          <Component id="jBnuevoRegistrarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBnuevoRegistrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -250,8 +244,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBregistrarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBnuevoRegistrarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBregistrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBnuevoRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="15" max="32767" attributes="0"/>
                       </Group>
@@ -259,20 +253,20 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jBregistrarEstudiante">
+                <Component class="javax.swing.JButton" name="jBregistrar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Registrar Estudiante"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBregistrarEstudianteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBregistrarActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBnuevoRegistrarEstudiante">
+                <Component class="javax.swing.JButton" name="jBnuevoRegistrar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar un Nuevo Estudiante"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoRegistrarEstudianteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoRegistrarActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -379,7 +373,6 @@
                 <Component class="javax.swing.JTextField" name="jTFfiltrarEstudiante">
                   <Events>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFfiltrarEstudianteKeyReleased"/>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFfiltrarEstudianteKeyTyped"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -455,9 +448,6 @@
                 <Component class="javax.swing.JTextField" name="JTFidEstudianteModificar">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFnombreEstudianteModificar">
-                  <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFnombreEstudianteModificarKeyTyped"/>
-                  </Events>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDCfechaNacimientoEstudianteModificar">
                   <Properties>
@@ -481,9 +471,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jBeliminarEstudiante" max="32767" attributes="0"/>
-                              <Component id="jBactualizarDatosEstudiante" max="32767" attributes="0"/>
-                              <Component id="jBnuevoModificarEstudiante" max="32767" attributes="0"/>
+                              <Component id="jBeliminar" max="32767" attributes="0"/>
+                              <Component id="jBactualizarDatos" max="32767" attributes="0"/>
+                              <Component id="jBnuevoActualizar" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
@@ -493,39 +483,39 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jBactualizarDatosEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBactualizarDatos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBeliminarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBeliminar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBnuevoModificarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBnuevoActualizar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jBactualizarDatosEstudiante">
+                <Component class="javax.swing.JButton" name="jBactualizarDatos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Actualizar Datos"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBactualizarDatosEstudianteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBactualizarDatosActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBeliminarEstudiante">
+                <Component class="javax.swing.JButton" name="jBeliminar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar Estudiante"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarEstudianteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBnuevoModificarEstudiante">
+                <Component class="javax.swing.JButton" name="jBnuevoActualizar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoModificarEstudianteActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBnuevoActualizarActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
