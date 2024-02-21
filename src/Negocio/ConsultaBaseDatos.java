@@ -186,7 +186,7 @@ public class ConsultaBaseDatos {
         }
     }
     
-    public boolean registrarPrestamo(Connection cn, String idEstudiante, String idLibro, String fechaPrestamo, String fechaRetorno, String idEstudiante, String fechaNacimientoEstudiante, String fechaPublicacionAutor, String Stock) {
+    public boolean registrarPrestamo(Connection cn, String nombreEstudiante, String idLibro, String fechaPrestamo, String fechaRetorno, String idEstudiante, String fechaNacimientoEstudiante, String fechaPublicacionAutor, String Stock) {
         boolean error = false;
         try {
             // Iniciar una transacción
@@ -218,15 +218,15 @@ public class ConsultaBaseDatos {
 
             // Registrar préstamo
             PreparedStatement ps3 = cn.prepareStatement("INSERT INTO `Préstamo` (NombreEstudiante, Titulo, FechaPrestamo, FechaRetorno, Cantidad) VALUES (?,?,?,?,?)");
-            ps3.setString(1, nombreEstudiante);
-            ps3.setString(2, idLibro);
+            ps3.setInt(1, Integer.parseInt(idEstudiante));
+            ps3.setInt(2, Integer.parseInt(idLibro));
             ps3.setString(3, fechaPrestamo);
             ps3.setString(4, fechaRetorno);
             ps3.executeUpdate();
 
             // Restar la cantidad prestada del stock del libro
             PreparedStatement ps4 = cn.prepareStatement("UPDATE libro SET Stock = Stock - 1 WHERE Titulo = ?");
-            ps4.setString(1, idLibro);
+            ps4.setInt(1, Integer.parseInt(idLibro));
             ps4.executeUpdate();
 
             // Confirmar la transacción
