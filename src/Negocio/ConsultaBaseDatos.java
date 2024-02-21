@@ -158,7 +158,73 @@ public class ConsultaBaseDatos {
         }
         return error;
     }
+    
+    //LOS QUE TIENEN 2 0 3 NO SIRVEN, NO BORRAR PERO
+    public boolean registrarLibro2(Connection cn, String titulo, String idAutor, int anioPublicacion, String stock, String nombreAutor, String fechaNacimientoAutor) {
+        boolean error = false;
+        try {
+            PreparedStatement ps1 = cn.prepareStatement("SELECT * FROM autor WHERE idAutor = ? AND NombreAutor = ? AND FechaNacimiento = ?");
+            ps1.setInt(1, Integer.parseInt(idAutor));
+            ps1.setString(2, nombreAutor);
+            ps1.setString(3, fechaNacimientoAutor);
+            ResultSet existe = ps1.executeQuery();
+            
+            if(!existe.next()){
+                if(this.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor) == true){
+                    JOptionPane.showMessageDialog(null, "El idAutor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
+            }
+            PreparedStatement ps2 = cn.prepareStatement("INSERT INTO Libro (Titulo, idAutor, AñoPublicacion, Stock) VALUES (?,?,?,?)");
+//                ps2.setInt(1, Integer.parseInt(idLibro));
+            ps2.setString(1, titulo);
+            ps2.setInt(2, Integer.parseInt(idAutor));
+            ps2.setInt(3, anioPublicacion);
+            ps2.setInt(4, Integer.parseInt(stock));
+            ps2.executeUpdate();        
+            JOptionPane.showMessageDialog(null, "Libro registrado correctamente.", "Registrar libro", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar los datos.\n" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+        return error;
+    }
 
+    public boolean registrarLibro3(Connection cn, String titulo, String idAutor, String fechaPublicacion, String stock, String nombreAutor, String fechaNacimientoAutor) {
+        boolean error = false;
+        try {
+            PreparedStatement ps1 = cn.prepareStatement("SELECT * FROM autor WHERE idAutor = ? AND NombreAutor = ? AND FechaNacimiento = ?");
+            ps1.setInt(1, Integer.parseInt(idAutor));
+            ps1.setString(2, nombreAutor);
+            ps1.setString(3, fechaNacimientoAutor);
+            ResultSet existe = ps1.executeQuery();
+            
+            if(!existe.next()){
+                if(this.registrarAutor(cn, idAutor, nombreAutor, fechaNacimientoAutor) == true){
+                    JOptionPane.showMessageDialog(null, "El idAutor ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
+//                else{
+//                    int opcion = JOptionPane.showConfirmDialog(null, "El autor no consta en la tabla.\nDesea crearlo.", "Crear Autor", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+//                    if(opcion != JOptionPane.YES_OPTION)
+//                        return true;
+//                }
+            }
+            PreparedStatement ps2 = cn.prepareStatement("INSERT INTO Libro (Titulo, idAutor, FechaPublicacion, Stock) VALUES (?,?,?,?)");
+//                ps2.setInt(1, Integer.parseInt(idLibro));
+            ps2.setString(1, titulo);
+            ps2.setInt(2, Integer.parseInt(idAutor));
+            ps2.setString(3, fechaPublicacion);
+            ps2.setInt(4, Integer.parseInt(stock));
+            ps2.executeUpdate();        
+            JOptionPane.showMessageDialog(null, "Libro registrado correctamente.", "Registrar libro", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar los datos.\n" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+            error = true;
+        }
+        return error;
+    }
+    
     public void actualizarLibro(Connection cn, String idLibro, String titulo, String fechaPublicacion, String stock){
         try {
             PreparedStatement ps = cn.prepareStatement("UPDATE libro SET Titulo = ?, FechaPublicacion = ?, Stock = ? WHERE idlibro = ?");

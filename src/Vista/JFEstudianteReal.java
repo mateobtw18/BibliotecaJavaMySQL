@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 //import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
@@ -34,6 +35,8 @@ public class JFEstudianteReal extends javax.swing.JFrame {
     JFMenu jfMenu;
     SimpleDateFormat formatoFecha;
     Date fecha;
+    Calendar cal = Calendar.getInstance();
+
     
     public JFEstudianteReal() {
         initComponents();
@@ -51,7 +54,9 @@ public class JFEstudianteReal extends javax.swing.JFrame {
         BGfiltrar.add(jRBnombreEstudiante);
         this.JTFidEstudianteModificar.setEditable(false);
         this.limpiarCeldasRegistrar();
-        this.jDCfechaNacimientoEstudiante.setEnabled(true);
+//        this.jDCfechaNacimientoEstudiante.setEnabled(true);
+        this.jDCfechaNacimientoEstudiante.setMaxSelectableDate(cal.getTime());
+        this.jDCfechaNacimientoEstudianteModificar.setMaxSelectableDate(cal.getTime());
         formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
     }
 

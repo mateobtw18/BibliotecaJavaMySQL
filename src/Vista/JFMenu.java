@@ -11,7 +11,9 @@ public class JFMenu extends javax.swing.JFrame {
 
     JFEstudianteReal jfEstudiante;
     JFAutorReal jfAutor;
-    JFLibroReal jfLibro;
+//    JFLibroReal jfLibro;
+//    JFLibroSinIDyAnioPetado jf;
+    JFLibroCasiReal jf;
     
     public JFMenu() {
         initComponents();
@@ -132,8 +134,11 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMnuLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuLibroActionPerformed
-        jfLibro = new JFLibroReal();
-        jfLibro.setVisible(true);
+//        jfLibro = new JFLibroReal();
+//        jfLibro.setVisible(true);
+//        this.setVisible(false);
+        jf = new JFLibroCasiReal();
+        jf.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMnuLibroActionPerformed
 

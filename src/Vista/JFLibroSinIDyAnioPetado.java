@@ -1,5 +1,6 @@
 package Vista;
 
+import Vista.*;
 import Conectar.ConexionBaseDatos;
 import Negocio.ConsultaBaseDatos;
 import Negocio.Tabla;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Acer123
  */
-public class JFLibroReal extends javax.swing.JFrame {
+public class JFLibroSinIDyAnioPetado extends javax.swing.JFrame {
 
     ConexionBaseDatos con = new ConexionBaseDatos();
     Connection cn;
@@ -35,19 +36,21 @@ public class JFLibroReal extends javax.swing.JFrame {
     SimpleDateFormat formatoFecha;
     Date fecha;
     
-    public JFLibroReal() {
+    public JFLibroSinIDyAnioPetado() {
         initComponents();
         this.setLocationRelativeTo(null);
         try {
             cn = con.conexion();
         } catch (SQLException ex) {
-            Logger.getLogger(JFLibroReal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(Level.SEVERE, null, ex);
         }
         consulta = new ConsultaBaseDatos();
         tablaLibro = (DefaultTableModel) this.jTlistalibros.getModel();
         tablaAutor = (DefaultTableModel) this.jTlistaAutores.getModel();
         metodoTabla = new Tabla();
-        this.metodoTabla.actualizarTablaLibro(cn, tablaLibro);
+//        this.metodoTabla.actualizarTablaLibro(cn, tablaLibro);
+        this.metodoTabla.actualizarTablaLibro2(cn, tablaLibro);
+
         this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
         BGfiltrar.add(jRBidLibro);
         BGfiltrar.add(jRBtituloLibro);
@@ -55,7 +58,7 @@ public class JFLibroReal extends javax.swing.JFrame {
         this.jTFidAutorModificar.setEditable(false);
         this.limpiarCeldasRegistrar();
         this.jDCfechaNacimientoAutor.setEnabled(true);
-        formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        formatoFecha = new SimpleDateFormat("yyyy-MM-dd"); ///OJOOOO  
     }
 
     @Override
@@ -76,14 +79,12 @@ public class JFLibroReal extends javax.swing.JFrame {
         jTPlibro = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTFtituloLibro = new javax.swing.JTextField();
-        jTFidLibro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTFstockLibro = new javax.swing.JTextField();
-        jDCfechaPublicacionLibro = new com.toedter.calendar.JDateChooser();
+        jDCanioPublicacionLibro = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jBregistrarLibro = new javax.swing.JButton();
         jBnuevoRegistrarLibro = new javax.swing.JButton();
@@ -134,17 +135,9 @@ public class JFLibroReal extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Libro"));
 
-        jLabel1.setText("ID Libro:");
-
         jLabel2.setText("Título:");
 
-        jLabel3.setText("Fecha de Publicación:");
-
-        jTFidLibro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFidLibroKeyTyped(evt);
-            }
-        });
+        jLabel3.setText("Año de Publicación:");
 
         jLabel7.setText("Stock:");
 
@@ -154,7 +147,7 @@ public class JFLibroReal extends javax.swing.JFrame {
             }
         });
 
-        jDCfechaPublicacionLibro.setDateFormatString("yyyy-MM-dd");
+        jDCanioPublicacionLibro.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -165,33 +158,27 @@ public class JFLibroReal extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTFtituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTFidLibro, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTFstockLibro)
-                        .addComponent(jDCfechaPublicacionLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                    .addComponent(jTFtituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDCanioPublicacionLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTFstockLibro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTFidLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTFtituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jDCfechaPublicacionLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jDCanioPublicacionLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFstockLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -305,7 +292,7 @@ public class JFLibroReal extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,7 +382,7 @@ public class JFLibroReal extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(85, 85, 85)))
-                        .addGap(56, 278, Short.MAX_VALUE))
+                        .addGap(56, 226, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -463,7 +450,7 @@ public class JFLibroReal extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jBactualizarDatosLibro)
                 .addGap(18, 18, 18)
                 .addComponent(jBeliminarLibro)
@@ -492,7 +479,7 @@ public class JFLibroReal extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,11 +550,11 @@ public class JFLibroReal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "idLibro", "Titulo", "idAutor", "FechaPublicacion", "Stock"
+                "idLibro", "Titulo", "idAutor", "AñoPublicacion", "Stock"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -668,42 +655,46 @@ public class JFLibroReal extends javax.swing.JFrame {
         String nombreAutor = this.jTFnombreAutor.getText();
         String fechaNacimientoAutor = "";
 //        String fechaNacimientoAutor = this.formatoFecha.format(this.jDCfechaNacimientoAutor.getDate());
-        String idLibro = this.jTFidLibro.getText();
+//        String idLibro = this.jTFidLibro.getText();
         String titulo = this.jTFtituloLibro.getText();
-        String fechaPublicacion = "";
-//        String fechaPublicacion = this.formatoFecha.format(this.jDCfechaPublicacionLibro.getDate());
+        int anioPublicacion = 0;
+        System.out.println(this.jDCanioPublicacionLibro.getDate().getYear() + 1900);
+//        String anioPublicacion = this.formatoFecha.format(this.jDCfechaPublicacionLibro.getDate());
         String stock = this.jTFstockLibro.getText();
         if(this.jDCfechaNacimientoAutor.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha de nacimiento válida.", "Error", JOptionPane.ERROR_MESSAGE);
         } 
-        else if(this.jDCfechaPublicacionLibro.getDate() == null){
+        else if(this.jDCanioPublicacionLibro.getDate() == null){
             JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha de publicación válida.", "Error", JOptionPane.ERROR_MESSAGE);           
         }
         else{
             fechaNacimientoAutor = this.formatoFecha.format(this.jDCfechaNacimientoAutor.getDate());
-            fechaPublicacion = this.formatoFecha.format(this.jDCfechaPublicacionLibro.getDate());
+//            fechaNacimientoAutor = this.jDCfechaNacimientoAutor.getDateFormatString();
+//            anioPublicacion = this.formatoFecha.format(this.jDCanioPublicacionLibro.getDate());
+            anioPublicacion = this.jDCanioPublicacionLibro.getDate().getYear() + 1900;
+
         } 
         
-        if(idAutor.isEmpty() || nombreAutor.isEmpty() || idLibro.isEmpty() || titulo.isEmpty() || stock.isEmpty() ||
-           this.jDCfechaNacimientoAutor.getDate() == null || this.jDCfechaPublicacionLibro.getDate() == null){
+        if(idAutor.isEmpty() || nombreAutor.isEmpty() || titulo.isEmpty() || stock.isEmpty() ||
+           this.jDCfechaNacimientoAutor.getDate() == null || this.jDCanioPublicacionLibro.getDate() == null){
                 JOptionPane.showMessageDialog(null, "Por favor, corrige los campos antes de registrar.", "Error", JOptionPane.ERROR_MESSAGE);            
         }
         else{
-            if(this.consulta.registrarLibro(cn, idLibro, titulo, idAutor, fechaPublicacion, stock, nombreAutor, fechaNacimientoAutor) == true){
+            if(this.consulta.registrarLibro2(cn, titulo, idAutor, anioPublicacion, stock, nombreAutor, fechaNacimientoAutor) == true){
                 this.limpiarCeldasRegistrar();
                 this.jTFnombreAutor.requestFocus();
             }
             else{
                 this.metodoTabla.actualizarTablaAutor(cn, tablaAutor);
-                this.metodoTabla.actualizarTablaLibro(cn, tablaLibro);
+                this.metodoTabla.actualizarTablaLibro2(cn, tablaLibro);
                 this.jTlistalibros.setModel(tablaLibro);
                 this.jTlistaAutores.setModel(tablaAutor);
                 this.jTFidAutor.setEditable(false);
                 this.jTFnombreAutor.setEditable(false);
                 this.jDCfechaNacimientoAutor.setEnabled(false);
-                this.jTFidLibro.setEditable(false);
+//                this.jTFidLibro.setEditable(false);
                 this.jTFtituloLibro.setEditable(false);
-                this.jDCfechaPublicacionLibro.setEnabled(false);
+                this.jDCanioPublicacionLibro.setEnabled(false);
                 this.jTFstockLibro.setEditable(false);
             }
         }
@@ -722,16 +713,16 @@ public class JFLibroReal extends javax.swing.JFrame {
         this.jTFidAutor.setEditable(true);
         this.jTFnombreAutor.setEditable(true);
         this.jDCfechaNacimientoAutor.setEnabled(true);
-        this.jTFidLibro.setEditable(true);
+//        this.jTFidLibro.setEditable(true);
         this.jTFtituloLibro.setEditable(true);
-        this.jDCfechaPublicacionLibro.setEnabled(true);
+        this.jDCanioPublicacionLibro.setEnabled(true);
         this.jTFstockLibro.setEditable(true);
         this.jTFidAutor.setText("");
         this.jTFnombreAutor.setText("");
         this.jDCfechaNacimientoAutor.setDate(null);
-        this.jTFidLibro.setText("");
+//        this.jTFidLibro.setText("");
         this.jTFtituloLibro.setText("");
-        this.jDCfechaPublicacionLibro.setDate(null);
+        this.jDCanioPublicacionLibro.setDate(null);
         this.jTFstockLibro.setText("");
     }
     
@@ -762,7 +753,7 @@ public class JFLibroReal extends javax.swing.JFrame {
             try {
                 fecha = formatoFecha.parse(fechaNacimientoAutor);
             } catch (ParseException ex) {
-                Logger.getLogger(JFLibroReal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.jDCfechaNacimientoAutor.setDate(fecha);
             
@@ -853,7 +844,7 @@ public class JFLibroReal extends javax.swing.JFrame {
             try {
                 fecha = formatoFecha.parse(fechaPublicacion);
             } catch (ParseException ex) {
-                Logger.getLogger(JFLibroReal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.jDCfechaPublicacionLibroModificar.setDate(fecha);
             this.jTFstockLibroModificar.setText(stock);
@@ -879,14 +870,6 @@ public class JFLibroReal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese solamente letras.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
         }  
     }//GEN-LAST:event_jTFnombreAutorKeyTyped
-
-    private void jTFidLibroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidLibroKeyTyped
-        char caracter = evt.getKeyChar(); 
-        if(Character.isLetter(caracter)){ 
-            evt.consume(); //ya no lo va a usar y borra el caracter 
-            JOptionPane.showMessageDialog(null, "Ingrese solamente números.","Advertencia",JOptionPane.INFORMATION_MESSAGE); 
-        }           
-    }//GEN-LAST:event_jTFidLibroKeyTyped
 
     private void jTFstockLibroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFstockLibroKeyTyped
         char caracter = evt.getKeyChar(); 
@@ -930,14 +913,206 @@ public class JFLibroReal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFLibroReal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFLibroSinIDyAnioPetado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1006,7 +1181,7 @@ public class JFLibroReal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFLibroReal().setVisible(true);
+                new JFLibroSinIDyAnioPetado().setVisible(true);
             }
         });
     }
@@ -1019,10 +1194,9 @@ public class JFLibroReal extends javax.swing.JFrame {
     private javax.swing.JButton jBnuevoModificarLibro;
     private javax.swing.JButton jBnuevoRegistrarLibro;
     private javax.swing.JButton jBregistrarLibro;
+    private com.toedter.calendar.JDateChooser jDCanioPublicacionLibro;
     private com.toedter.calendar.JDateChooser jDCfechaNacimientoAutor;
-    private com.toedter.calendar.JDateChooser jDCfechaPublicacionLibro;
     private com.toedter.calendar.JDateChooser jDCfechaPublicacionLibroModificar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1056,7 +1230,6 @@ public class JFLibroReal extends javax.swing.JFrame {
     private javax.swing.JTextField jTFfiltrarLibro;
     private javax.swing.JTextField jTFidAutor;
     private javax.swing.JTextField jTFidAutorModificar;
-    private javax.swing.JTextField jTFidLibro;
     private javax.swing.JTextField jTFnombreAutor;
     private javax.swing.JTextField jTFstockLibro;
     private javax.swing.JTextField jTFstockLibroModificar;
