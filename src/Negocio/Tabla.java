@@ -198,7 +198,6 @@ public class Tabla {
                 prestamo[2] = rs.getString("Titulo");
                 prestamo[3] = rs.getString("FechaPrestamo");
                 prestamo[4] = rs.getString("FechaRetorno");
-                prestamo[5] = rs.getInt("Cantidad");
 
                 tabla.addRow(prestamo);
             }

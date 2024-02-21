@@ -51,7 +51,7 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         this.metodoTabla.actualizarTablaLibro(cn, tablaLibro);
         this.metodoTabla.actualizarTablaEstudiante(cn, tablaEstudiante);
         this.metodoTabla.actualizarTablaPrestamo(cn, tablaPrestamo);
-        BGfiltrar.add(jRBidLibro);
+        BGfiltrar.add(jRBNombreEstudiante);
         BGfiltrar.add(jRBtituloLibro);
         this.JTFidPrestamoModificar.setEditable(false);
         this.jTFnombreEstudianteModificar.setEditable(false);
@@ -107,7 +107,7 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         jTFCantidad = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jRBidLibro = new javax.swing.JRadioButton();
+        jRBNombreEstudiante = new javax.swing.JRadioButton();
         jRBtituloLibro = new javax.swing.JRadioButton();
         jTFfiltrarPrestamo = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
@@ -116,8 +116,6 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         JTFidPrestamoModificar = new javax.swing.JTextField();
         jTFnombreEstudianteModificar = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTFcantidadModificar = new javax.swing.JTextField();
         jDCfechaPrestamoModificar = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         jTFtituloModificar = new javax.swing.JTextField();
@@ -393,18 +391,23 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTPPrestamo.addTab("Registrar Libro", jPanel1);
+        jTPPrestamo.addTab("Registrar Préstamo", jPanel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrar"));
 
-        jRBidLibro.setText("ID Libro");
+        jRBNombreEstudiante.setText("Nombre Estudiante");
+        jRBNombreEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBNombreEstudianteActionPerformed(evt);
+            }
+        });
 
-        jRBtituloLibro.setText("Título");
+        jRBtituloLibro.setText("Título Libro");
 
         jTFfiltrarPrestamo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -421,9 +424,9 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jRBidLibro)
-                .addGap(23, 23, 23)
-                .addComponent(jRBtituloLibro)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRBtituloLibro)
+                    .addComponent(jRBNombreEstudiante))
                 .addGap(18, 18, 18)
                 .addComponent(jTFfiltrarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -431,12 +434,16 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRBidLibro)
-                    .addComponent(jRBtituloLibro)
-                    .addComponent(jTFfiltrarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jRBNombreEstudiante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBtituloLibro))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jTFfiltrarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevos Datos"));
@@ -445,13 +452,11 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
 
         jLabel5.setText("Nombre de Estudiante:");
 
-        jLabel6.setText("Fecha de Prestamo:");
-
-        jLabel8.setText("Cantidad");
+        jLabel6.setText("Fecha de Préstamo:");
 
         jDCfechaPrestamoModificar.setDateFormatString("yyyy-MM-dd");
 
-        jLabel9.setText("Titulo:");
+        jLabel9.setText("Título del Libro:");
 
         jLabel10.setText("Fecha de Retorno:");
 
@@ -465,24 +470,22 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(273, 286, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDCfechaRetornoPrestamoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFcantidadModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDCfechaPrestamoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTFtituloModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JTFidPrestamoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTFnombreEstudianteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,15 +506,11 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(jDCfechaPrestamoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDCfechaRetornoPrestamoModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTFcantidadModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
@@ -523,7 +522,7 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             }
         });
 
-        jBeliminarLibro.setText("Eliminar Libro");
+        jBeliminarLibro.setText("Eliminar Préstamo");
         jBeliminarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBeliminarLibroActionPerformed(evt);
@@ -581,25 +580,25 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        jTPPrestamo.addTab("Devolucion de Prestamo", jPanel2);
+        jTPPrestamo.addTab("Devolucion de Préstamo", jPanel2);
 
         jPEstudiantes.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Estudiantes"));
 
@@ -703,14 +702,14 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "idPrestamo", "NombreEstudiante", "Titulo", "FechaPrestamo", "FechaRetorno", "Cantidad"
+                "idPrestamo", "NombreEstudiante", "Titulo", "FechaPrestamo", "FechaRetorno"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -732,14 +731,17 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         jPListaPrestamos.setLayout(jPListaPrestamosLayout);
         jPListaPrestamosLayout.setHorizontalGroup(
             jPListaPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPListaPrestamosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
+            .addGroup(jPListaPrestamosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPListaPrestamosLayout.setVerticalGroup(
             jPListaPrestamosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+            .addGroup(jPListaPrestamosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMenu1.setText("File");
@@ -775,30 +777,29 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTPPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPListaPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 614, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPListaPrestamos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTPPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 139, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jPEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTPPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTPPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPListaPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPListaPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
@@ -835,7 +836,7 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
                 this.jDCfechaNacimientoEstudiante.getDate() == null || this.jDCfechaPublicacionLibro.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Por favor, corrige los campos antes de registrar.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (this.consulta.registrarPrestamo(cn, nombreEstudiante, titulo, fechaPrestamo, fechaRetorno, cantidad, idEstudiante, fechaNacimientoEstudiante,fechaPublicacion,stock)) {
+            if (this.consulta.registrarPrestamo(cn, nombreEstudiante, titulo, fechaPrestamo, fechaRetorno, idEstudiante, fechaNacimientoEstudiante, fechaPublicacion, stock)) {
                 this.limpiarCeldasRegistrar();
                 this.jTFnombreEstudiante.requestFocus();
             } else {
@@ -882,7 +883,7 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
     }
     
     private void jTFfiltrarPrestamoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarPrestamoKeyReleased
-        if(this.jRBidLibro.isSelected()){
+        if(this.jRBNombreEstudiante.isSelected()){
             this.metodoTabla.consultarLibro(cn, "idLibro", this.jTFfiltrarPrestamo.getText(), tablaLibro);
         }
         else if(this.jRBtituloLibro.isSelected()){
@@ -901,15 +902,14 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         String nombreEstudiante = this.jTFnombreEstudianteModificar.getText();
         String fechaPrestamo = this.formatoFecha.format(this.jDCfechaPrestamoModificar.getDate());
         String fechaRetorno = this.formatoFecha.format(this.jDCfechaRetornoPrestamoModificar.getDate());
-        String cantidadActualizado = this.jTFcantidadModificar.getText();
         
-        if(tituloActualizado.isEmpty() || cantidadActualizado.isEmpty() || this.jDCfechaPrestamoModificar.getDate() == null){
+        if(tituloActualizado.isEmpty() ||  this.jDCfechaPrestamoModificar.getDate() == null){
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de actualizar?", "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(opcion == JOptionPane.YES_OPTION) {
-                this.consulta.actualizarPrestamo(cn, idPrestamo, tituloActualizado,nombreEstudiante, fechaPrestamo,fechaRetorno, cantidadActualizado);
+                this.consulta.actualizarPrestamo(cn, idPrestamo, idPrestamo, nombreEstudiante, fechaPrestamo, fechaRetorno, fechaRetorno);
                 
                 // Actualiza la tabla después de la operación de actualización en la base de datos
                 this.metodoTabla.actualizarTablaPrestamo(cn, tablaPrestamo);
@@ -930,7 +930,6 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
         this.jTFtituloModificar.setText("");
         this.jDCfechaPrestamoModificar.setDate(null);
         this.jDCfechaRetornoPrestamoModificar.setDate(null);
-        this.jTFcantidadModificar.setText("");
         this.jTFfiltrarPrestamo.setText("");
         this.metodoTabla.actualizarTablaPrestamo(cn, tablaPrestamo);
         this.jTlistalibros.setModel(tablaLibro);
@@ -951,7 +950,6 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             this.jTFtituloModificar.setText("");
             this.jDCfechaPrestamoModificar.setDate(null);
             this.jDCfechaRetornoPrestamoModificar.setDate(null);
-            this.jTFcantidadModificar.setText("");
             this.BGfiltrar.clearSelection();
             this.jTFfiltrarPrestamo.setText("");
             this.limpiarCeldasRegistrar();
@@ -1023,7 +1021,7 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFstockLibroKeyTyped
 
     private void jTFfiltrarPrestamoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFfiltrarPrestamoKeyTyped
-        if(this.jRBidLibro.isSelected()){
+        if(this.jRBNombreEstudiante.isSelected()){
             char caracter = evt.getKeyChar(); 
             if(Character.isLetter(caracter)){ 
                 evt.consume(); //ya no lo va a usar y borra el caracter 
@@ -1053,7 +1051,6 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             this.JTFidPrestamoModificar.setText(idPrestamo);
             this.jTFnombreEstudianteModificar.setText(nombreEstudiante);
             this.jTFtituloModificar.setText(titulo);
-            this.jTFcantidadModificar.setText(cantidad);
             
             try {
                 fecha = formatoFecha.parse(fechaPrestamo);
@@ -1099,11 +1096,10 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
          // Obtener datos del préstamo seleccionado en la interfaz
             String idPrestamo = JTFidPrestamoModificar.getText();
             String nuevaFechaRetorno = formatoFecha.format(jDCfechaRetornoPrestamoModificar.getDate()); // Ajusta esto según la obtención de la fecha en tu interfaz
-            String nuevaCantidad = jTFcantidadModificar.getText();
             
 
             // Llamar al método para realizar la devolución
-            consulta.realizarDevolucion(cn, idPrestamo, nuevaFechaRetorno, nuevaCantidad);
+            consulta.realizarDevolucion(cn, idPrestamo, nuevaFechaRetorno, nuevaFechaRetorno);
 
             // Llamar a la función para eliminar el préstamo
             this.consulta.eliminarPrestamo(cn, idPrestamo);
@@ -1114,13 +1110,16 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
             this.jTFtituloModificar.setText("");
             this.jDCfechaPrestamoModificar.setDate(null);
             this.jDCfechaRetornoPrestamoModificar.setDate(null);
-            this.jTFcantidadModificar.setText("");
             this.BGfiltrar.clearSelection();
             this.jTFfiltrarPrestamo.setText("");
             this.limpiarCeldasRegistrar();
 
         // Realizar otras operaciones o actualizaciones en tu interfaz si es necesario
     }//GEN-LAST:event_jBdevolucionActionPerformed
+
+    private void jRBNombreEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBNombreEstudianteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRBNombreEstudianteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1313,7 +1312,6 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -1332,13 +1330,12 @@ public class JFPrestamoNoReal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRBidLibro;
+    private javax.swing.JRadioButton jRBNombreEstudiante;
     private javax.swing.JRadioButton jRBtituloLibro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTFCantidad;
-    private javax.swing.JTextField jTFcantidadModificar;
     private javax.swing.JTextField jTFfiltrarPrestamo;
     private javax.swing.JTextField jTFidEstudiante;
     private javax.swing.JTextField jTFidLibro;

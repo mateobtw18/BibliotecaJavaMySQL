@@ -186,7 +186,7 @@ public class ConsultaBaseDatos {
         }
     }
     
-    public boolean registrarPrestamo(Connection cn, String nombreEstudiante, String titulo, String fechaPrestamo, String fechaRetorno, String cantidad, String idEstudiante, String fechaNacimientoEstudiante, String fechaPublicacionAutor, String Stock) {
+    public boolean registrarPrestamo(Connection cn, String idEstudiante, String idLibro, String fechaPrestamo, String fechaRetorno, String idEstudiante, String fechaNacimientoEstudiante, String fechaPublicacionAutor, String Stock) {
         boolean error = false;
         try {
             // Iniciar una transacción
@@ -206,7 +206,7 @@ public class ConsultaBaseDatos {
 
             // Verificar existencia del libro
             PreparedStatement ps2 = cn.prepareStatement("SELECT * FROM libro WHERE Titulo = ? AND FechaPublicacion = ? AND Stock = ?");
-            ps2.setString(1, titulo);
+            ps2.setString(1, idLibro);
             ps2.setString(2, fechaPublicacionAutor);
             ps2.setInt(3, Integer.parseInt(Stock));
             ResultSet existeLibro = ps2.executeQuery();
@@ -219,16 +219,14 @@ public class ConsultaBaseDatos {
             // Registrar préstamo
             PreparedStatement ps3 = cn.prepareStatement("INSERT INTO `Préstamo` (NombreEstudiante, Titulo, FechaPrestamo, FechaRetorno, Cantidad) VALUES (?,?,?,?,?)");
             ps3.setString(1, nombreEstudiante);
-            ps3.setString(2, titulo);
+            ps3.setString(2, idLibro);
             ps3.setString(3, fechaPrestamo);
             ps3.setString(4, fechaRetorno);
-            ps3.setInt(5, Integer.parseInt(cantidad));
             ps3.executeUpdate();
 
             // Restar la cantidad prestada del stock del libro
-            PreparedStatement ps4 = cn.prepareStatement("UPDATE libro SET Stock = Stock - ? WHERE Titulo = ?");
-            ps4.setInt(1, Integer.parseInt(cantidad));
-            ps4.setString(2, titulo);
+            PreparedStatement ps4 = cn.prepareStatement("UPDATE libro SET Stock = Stock - 1 WHERE Titulo = ?");
+            ps4.setString(1, idLibro);
             ps4.executeUpdate();
 
             // Confirmar la transacción
@@ -263,27 +261,20 @@ public class ConsultaBaseDatos {
         // Obtener la cantidad prestada antes de actualizar el préstamo
         PreparedStatement psCantidad = cn.prepareStatement("SELECT Cantidad FROM `Préstamo` WHERE idPrestamo = ?");
         psCantidad.setInt(1, Integer.parseInt(idPrestamo));
-        ResultSet rs = psCantidad.executeQuery();
-        int cantidadAnterior = 0;
-        if (rs.next()) {
-            cantidadAnterior = rs.getInt("Cantidad");
-        }
+        
 
         PreparedStatement ps3 = cn.prepareStatement("UPDATE `Préstamo` SET NombreEstudiante = ?, Titulo = ?, FechaPrestamo = ?, FechaRetorno = ?, Cantidad = ? WHERE idPrestamo = ?");
-        ps3.setString(1, nombreEstudiante);
-        ps3.setString(2, titulo);
-        ps3.setString(3, fechaPrestamo);
-        ps3.setString(4, fechaRetorno);
-        ps3.setInt(5, Integer.parseInt(cantidad));
+        ps3.setString(2, nombreEstudiante);
+        ps3.setString(3, titulo);
+        ps3.setString(4, fechaPrestamo);
+        ps3.setString(5, fechaRetorno);
         ps3.setInt(6, Integer.parseInt(idPrestamo));
         ps3.executeUpdate();
         JOptionPane.showMessageDialog(null, "Datos actualizados correctamente.", "Actualizar Datos", JOptionPane.INFORMATION_MESSAGE);
 
         // Actualizar el stock
-        PreparedStatement psStock = cn.prepareStatement("UPDATE `Libro` SET Stock = Stock + ? - ? WHERE Titulo = ?");
-        psStock.setInt(1, cantidadAnterior);
-        psStock.setInt(2, Integer.parseInt(cantidad));
-        psStock.setString(3, titulo);
+        PreparedStatement psStock = cn.prepareStatement("UPDATE `Libro` SET Stock = Stock + 1  WHERE Titulo = ?");
+        psStock.setString(1, titulo);
         psStock.executeUpdate();
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Ocurrió un error al actualizar los datos.\n" + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -296,10 +287,8 @@ public void realizarDevolucion(Connection cn, String idPrestamo, String nuevaFec
         PreparedStatement psCantidad = cn.prepareStatement("SELECT Cantidad, Titulo FROM `Préstamo` WHERE idPrestamo = ?");
         psCantidad.setInt(1, Integer.parseInt(idPrestamo));
         ResultSet rs = psCantidad.executeQuery();
-        int cantidadAnterior = 0;
         String titulo = "";
         if (rs.next()) {
-            cantidadAnterior = rs.getInt("Cantidad");
             titulo = rs.getString("Titulo");
         }
 
@@ -312,10 +301,8 @@ public void realizarDevolucion(Connection cn, String idPrestamo, String nuevaFec
         JOptionPane.showMessageDialog(null, "Devolución realizada correctamente.", "Devolución", JOptionPane.INFORMATION_MESSAGE);
 
         // Actualizar el stock
-        PreparedStatement psStock = cn.prepareStatement("UPDATE `Libro` SET Stock = Stock + ? - ? WHERE Titulo = ?");
-        psStock.setInt(1, cantidadAnterior);
-        psStock.setInt(2, Integer.parseInt(nuevaCantidad));
-        psStock.setString(3, titulo);
+        PreparedStatement psStock = cn.prepareStatement("UPDATE `Libro` SET Stock = Stock + 1 WHERE Titulo = ?");
+        psStock.setString(1, titulo);
         psStock.executeUpdate();
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Ocurrió un error al realizar la devolución.\n" + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -328,10 +315,8 @@ public void eliminarPrestamo(Connection cn, String idPrestamo){
         PreparedStatement psCantidad = cn.prepareStatement("SELECT Cantidad, Titulo FROM `Préstamo` WHERE idPrestamo = ?");
         psCantidad.setInt(1, Integer.parseInt(idPrestamo));
         ResultSet rs = psCantidad.executeQuery();
-        int cantidad = 0;
         String titulo = "";
         if (rs.next()) {
-            cantidad = rs.getInt("Cantidad");
             titulo = rs.getString("Titulo");
         }
 
@@ -341,8 +326,7 @@ public void eliminarPrestamo(Connection cn, String idPrestamo){
         JOptionPane.showMessageDialog(null, "Prestamo eliminado correctamente.", "Eliminar Prestamo", JOptionPane.INFORMATION_MESSAGE);
 
         // Actualizar el stock
-        PreparedStatement psStock = cn.prepareStatement("UPDATE `Libro` SET Stock = Stock + ? WHERE Titulo = ?");
-        psStock.setInt(1, cantidad);
+        PreparedStatement psStock = cn.prepareStatement("UPDATE `Libro` SET Stock = Stock + 1 WHERE Titulo = ?");
         psStock.setString(2, titulo);
         psStock.executeUpdate();
     }catch (SQLException ex){

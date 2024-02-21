@@ -72,19 +72,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jTPPrestamo" min="-2" pref="423" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPListaPrestamos" pref="614" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jPListaPrestamos" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <Component id="jTPPrestamo" min="-2" pref="423" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jPanel3" max="32767" attributes="0"/>
                           <Component id="jPEstudiantes" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="139" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,16 +92,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTPPrestamo" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTPPrestamo" min="-2" pref="590" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jPEstudiantes" min="-2" pref="273" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPListaPrestamos" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jPListaPrestamos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,8 +121,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Registrar Libro">
-                <Property name="tabTitle" type="java.lang.String" value="Registrar Libro"/>
+              <JTabbedPaneConstraints tabName="Registrar Pr&#xe9;stamo">
+                <Property name="tabTitle" type="java.lang.String" value="Registrar Pr&#xe9;stamo"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -159,7 +158,7 @@
                       <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -511,8 +510,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Devolucion de Prestamo">
-                <Property name="tabTitle" type="java.lang.String" value="Devolucion de Prestamo"/>
+              <JTabbedPaneConstraints tabName="Devolucion de Pr&#xe9;stamo">
+                <Property name="tabTitle" type="java.lang.String" value="Devolucion de Pr&#xe9;stamo"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -522,12 +521,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel8" max="32767" attributes="0"/>
-                          <Component id="jPanel9" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanel9" max="32767" attributes="0"/>
                           <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -535,12 +534,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel7" min="-2" pref="94" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="135" max="32767" attributes="0"/>
+                      <EmptySpace pref="65" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -560,9 +559,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="jRBidLibro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="jRBtituloLibro" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jRBtituloLibro" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRBNombreEstudiante" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jTFfiltrarPrestamo" min="-2" pref="171" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -571,27 +571,36 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRBidLibro" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRBtituloLibro" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTFfiltrarPrestamo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jRBNombreEstudiante" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jRBtituloLibro" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jTFfiltrarPrestamo" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JRadioButton" name="jRBidLibro">
+                <Component class="javax.swing.JRadioButton" name="jRBNombreEstudiante">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="ID Libro"/>
+                    <Property name="text" type="java.lang.String" value="Nombre Estudiante"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRBNombreEstudianteActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jRBtituloLibro">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+                    <Property name="text" type="java.lang.String" value="T&#xed;tulo Libro"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFfiltrarPrestamo">
@@ -618,27 +627,25 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <Component id="jLabel4" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace min="273" pref="286" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jDCfechaRetornoPrestamoModificar" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="jTFcantidadModificar" min="-2" pref="150" max="-2" attributes="0"/>
                                       <Component id="jDCfechaPrestamoModificar" min="-2" pref="150" max="-2" attributes="0"/>
                                       <Component id="jTFtituloModificar" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="JTFidPrestamoModificar" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="jTFnombreEstudianteModificar" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel4" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace min="273" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -667,17 +674,12 @@
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <Component id="jDCfechaPrestamoModificar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace pref="18" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jDCfechaRetornoPrestamoModificar" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTFcantidadModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -695,19 +697,12 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Fecha de Prestamo:"/>
+                    <Property name="text" type="java.lang.String" value="Fecha de Pr&#xe9;stamo:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="JTFidPrestamoModificar">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFnombreEstudianteModificar">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel8">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cantidad"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="jTFcantidadModificar">
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDCfechaPrestamoModificar">
                   <Properties>
@@ -716,7 +711,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Titulo:"/>
+                    <Property name="text" type="java.lang.String" value="T&#xed;tulo del Libro:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTFtituloModificar">
@@ -792,7 +787,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jBeliminarLibro">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Eliminar Libro"/>
+                    <Property name="text" type="java.lang.String" value="Eliminar Pr&#xe9;stamo"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeliminarLibroActionPerformed"/>
@@ -975,16 +970,20 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" min="-2" pref="588" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane3" alignment="0" pref="361" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" pref="361" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -999,22 +998,16 @@
             <Component class="javax.swing.JTable" name="jTlistaPrestamos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
+                  <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="idPrestamo" type="java.lang.Integer"/>
                     <Column editable="false" title="NombreEstudiante" type="java.lang.String"/>
                     <Column editable="false" title="Titulo" type="java.lang.String"/>
                     <Column editable="false" title="FechaPrestamo" type="java.lang.Object"/>
                     <Column editable="false" title="FechaRetorno" type="java.lang.String"/>
-                    <Column editable="false" title="Cantidad" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
