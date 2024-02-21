@@ -807,7 +807,7 @@ public class JFLibroCasiReal extends javax.swing.JFrame {
         this.jTFtituloLibroModificar.setText("");
         this.jTFnombreAutorModificar.setText("");
         this.jDCfechaPublicacionLibroModificar.setDate(null);
-        this.jTFstockLibro.setText("");
+        this.jTFstockLibroModificar.setText("");
         this.jTFfiltrarLibro.setText("");
         this.metodoTabla.actualizarTablaLibro3(cn, tablaLibro);  ///3
         this.jTlistalibros.setModel(tablaLibro);

@@ -1,9 +1,10 @@
-package Vista;
+package NoUsados;
 
 import Vista.*;
 import Conectar.ConexionBaseDatos;
 import Negocio.ConsultaBaseDatos;
 import Negocio.Tabla;
+import Vista.JFMenu;
 import java.awt.Image;
 import java.awt.Toolkit;
 //import Negocio.ConsultaMySQL;

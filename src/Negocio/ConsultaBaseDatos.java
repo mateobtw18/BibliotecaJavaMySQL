@@ -249,4 +249,50 @@ public class ConsultaBaseDatos {
             JOptionPane.showMessageDialog(null, "Ocurrió un error al eliminar el libro.\n" + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    
+//    public boolean registrarPrestamo(Connection cn, String nombreEstudiante, String titulo, String fechaPrestamo, String fechaRetorno, String cantidad, String idEstudiante, String fechaNacimientoEstudiante, String fechaPublicacionAutor, String Stock) {
+//        boolean error = false;
+//        try {
+//            // Registrar préstamo
+//            PreparedStatement ps3 = cn.prepareStatement("INSERT INTO Préstamo (NombreEstudiante, Titulo, FechaPrestamo, FechaRetorno, Cantidad) VALUES (?,?,?,?,?)");
+//            ps3.setString(1, nombreEstudiante);
+//            ps3.setString(2, titulo);
+//            ps3.setString(3, fechaPrestamo);
+//            ps3.setString(4, fechaRetorno);
+//            ps3.setInt(5, Integer.parseInt(cantidad));
+//            ps3.executeUpdate();
+//
+//            // Restar la cantidad prestada del stock del libro
+//            PreparedStatement ps4 = cn.prepareStatement("UPDATE libro SET Stock = Stock - ? WHERE Titulo = ?");
+//            ps4.setInt(1, Integer.parseInt(cantidad));
+//            ps4.setString(2, titulo);
+//            ps4.executeUpdate();
+//
+//            // Confirmar la transacción
+//            cn.commit();
+//
+//            JOptionPane.showMessageDialog(null, "Préstamo registrado correctamente.", "Registrar Préstamo", JOptionPane.INFORMATION_MESSAGE);
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+//
+//            try {
+//                // En caso de error, hacer rollback
+//                cn.rollback();
+//            } catch (SQLException rollbackException) {
+//                rollbackException.printStackTrace();
+//            }
+//
+//            error = true;
+//        } finally {
+//            try {
+//                // Restaurar la configuración de auto-commit
+//                cn.setAutoCommit(true);
+//            } catch (SQLException autoCommitException) {
+//                autoCommitException.printStackTrace();
+//            }
+//        }
+//        return error;
+//    }
 }
